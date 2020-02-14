@@ -1,0 +1,260 @@
+<!-- Framework Iroha -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" type="text/css" href="./style/framework.css" charset="utf-8"/>
+    <link rel="stylesheet" type="text/css" href="./style/markdown.css" charset="utf-8"/>
+    <link rel="stylesheet" type="text/css" href="./style/highlight/vs.css" charset="utf-8"/>
+    <title>Iroha</title>
+</head>
+<body>
+
+<!--进度条-->
+<div class="Progressbar" id="Progressbar"></div>
+
+<!--首屏加载遮罩-->
+<div class="FirstLoadingMask">
+    <svg version="1" xmlns="http://www.w3.org/2000/svg" width="16" height="16" style="transform: scale(1.4);"><style>@keyframes rotate{0%{transform:rotate(0deg)}to{transform:rotate(360deg)}}@keyframes fillunfill{0%{stroke-dashoffset:32.3}50%{stroke-dashoffset:0}to{stroke-dashoffset:-31.9}}@keyframes rot{0%{transform:rotate(0deg)}to{transform:rotate(-360deg)}}@keyframes colors{0%,to{stroke:#00aaff}}</style><g style="animation-duration:1568.63ms;animation-iteration-count:infinite;animation-name:rotate;animation-timing-function:linear;transform-origin:50% 50%;width:16px;height:16px"><path fill="none" d="M8 1.125A6.875 6.875 0 1 1 1.125 8" stroke-width="2.25" stroke-linecap="round" style="animation-duration:1333ms,5332ms,5332ms;animation-fill-mode:forwards;animation-iteration-count:infinite,infinite,infinite;animation-name:fillunfill,rot,colors;animation-play-state:running,running,running;animation-timing-function:cubic-bezier(.4,0,.2,1),steps(4),linear;transform-origin:50% 50%" stroke-dasharray="32.4" stroke-dashoffset="32.4"/></g></svg>&nbsp;&nbsp;请稍等
+</div>
+
+<!--顶部标题（仅移动端显示）-->
+<div class="StickyTitleContainer" style="display: none;">
+    <div id="StickyTitle" class="StickyTitle" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"></div>
+    <div class="StickyTitleBackground"></div>
+</div>
+
+<!--左边栏-->
+<aside class="LeftAside">
+    <!--左上：后退按钮-->
+    <button id="BackButton" class="Button Raised Round" onclick="history.go(-1);" style="display: none;">
+        <img src="./image/icons/back-gray.png" style="height:16px;width:16px;margin-bottom: 2px; vertical-align: middle;">
+    </button>
+</aside>
+
+<!--右边栏-->
+<aside class="RightAside">
+    <!--右侧：菜单（目录）-->
+    <div id="MenuContainer" class="MenuContainer" style="display: none;">
+        <div class="StickyNavbar">
+            <button id="MenuButton" class="MenuButton" data-state="off">menu</button>
+            <nav class="Navbar" id="MenuNavbar" style="top: 40px; z-index: 100000; border: none;">
+                <button class="NavbarItem SPA_TRIGGER" active="false" data-target="index">首 页</button><button class="NavbarItem SPA_TRIGGER" active="false" data-target="inspirations">灵 感</button><button class="NavbarItem SPA_TRIGGER" active="false" data-target="blog">博 客</button><button class="NavbarItem SPA_TRIGGER" active="false" data-target="about">关 于</button>
+            </nav>
+        </div>
+        <div id="ContentsContainer"></div>
+    </div>
+    <!--右下：回到顶部按钮-->
+    <button id="GoTopButton" class="Button Raised Round" style="position: absolute; bottom: 80px; right: 0;" onclick="$('html, body').animate({scrollTop:0},'fast');">
+        <img src="./image/icons/gotop.png"  style="height:19px;width:17px; vertical-align: middle;">
+    </button>
+</aside>
+
+<!--页面框架-->
+<div class="Main">
+    <!--标题和封面-->
+    <header class="Header SPA_TITLE_CONTAINER"></header>
+    <!--导航栏-->
+    <nav class="Navbar" id="MainNavbar">
+        <button class="NavbarItem SPA_TRIGGER" active="false" data-target="index">首 页</button><button class="NavbarItem SPA_TRIGGER" active="false" data-target="inspirations">灵 感</button><button class="NavbarItem SPA_TRIGGER" active="false" data-target="blog">博 客</button><button class="NavbarItem SPA_TRIGGER" active="false" data-target="about">关 于</button>
+    </nav>
+    <!--正文内容-->
+    <article class="Article SPA_MAIN_CONTAINER"></article>
+    <!--底部-->
+    <footer class="Footer">
+        <div style="font-size: 13px; text-align: center; line-height: 25px; color: #ccc;" class="RBGradient">★ Framework IROHA ★</div>
+        <div style="font-size: 13px; text-align: center; line-height: 25px; color: #ccc;">© 2016-<span class="CopyrightYear"></span> Mikukonai</div>
+    </footer>
+</div>
+
+
+
+<!--首页模板-->
+
+<template class="index" id="index">
+
+    <div class="IndexItemContainer"><div class="IndexItemPaddingBox">
+        <table class="IndexItemTable"><tr>
+            <td class="IndexItemTableLeft">
+                <div class="IndexItemTitle" data-prefix="★"><a class="IndexItemTitleLink SPA_TRIGGER" data-target="blog/模板">SPA链接示例</a><span class="IndexItemTitleTag">标签</span></div>
+                <div class="IndexItemSummary">
+                    简短摘要
+                </div>
+            </td>
+            <td class="IndexItemTableRight">
+                <span style="font-size: 30px;">🌸</span>
+            </td>
+        </tr></table>
+    </div></div>
+
+    <div class="IndexBottomLink SPA_TRIGGER" data-target="blog">全部文章 »</div>
+
+    <script> SlideInOneByOne("IndexItemContainer", 5, 800, 300); // 进场动画 </script>
+</template>
+
+
+
+
+<!--灵感页模板-->
+<template id="inspirations">
+    <!--左侧导航栏切换开关-->
+    <div class="Button Flat Round InspirationMenuToggle" id="InspirationMenuToggle">menu</div>
+    <!--左侧导航栏-->
+    <div class="InspirationMenu" id="InspirationMenu">
+        <!--sticky顶栏-->
+        <div class="InspirationMenuTitleContainer"><span class="InspirationMenuTitle">灵感目录</span></div>
+        <!--标签容器-->
+        <div id="InspirationMenuTags"></div>
+        <!--目录容器-->
+        <div id="InspirationMenuList"></div>
+    </div>
+    <!--正文容器-->
+    <div class="InspirationContainer" id="InspirationContainer"></div>
+    <!--底部内容-->
+    <div class="InspirationEnding" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"></div>
+</template>
+
+
+
+<!--文章列表模板-->
+<template id="blog">
+    <div class="ListSortingOptionContainer">
+        <span class="ListSortingOption ListSortingOptionLeft" data-sorting-option="date-dec">日期降序</span><span class="ListSortingOption ListSortingOptionRight" data-sorting-option="category">分类归类</span>
+    </div>
+    <div id="ListContainer"></div>
+    <div class="ListEnding">底部文字</div>
+</template>
+
+
+
+
+<!--"关于"模板-->
+<template id="about">
+
+    <div class="AboutTitle" id="copyright">权 利 声 明</div>
+
+    <div class="AboutContent">版权所有 &copy; 2016-<span class="CopyrightYear"></span> Mikukonai<br>保留所有权利</div>
+    <div class="AboutContent">Licensed under MIT</div>
+
+    <div class="AboutTitle" id="changelog">版 本 记 录</div>
+
+    <div class="AboutEdition">
+        <p class="AboutVernum">V4.0<span style="color:#888888;padding-left: 15px;">2020.02.14</span></p>
+        <p class="AboutChangelog">抽取出框架</p>
+    </div>
+
+</template>
+
+
+
+<!--文章正文框架模板-->
+<template id="blog-article">
+    <div class="MikumarkMetadata">
+        <span id="MikumarkMetadataDate" style="padding-right:8px;"><span class="SkeletonPlaceholder" style="width:70px;">0</span></span>·<span id="MikumarkMetadataAuthors" style="padding-left:8px;"><span class="SkeletonPlaceholder" style="width:70px;">0</span></span>
+    </div>
+    <div class="MikumarkContainer" id="MikumarkContainer">
+        <span class="SkeletonPlaceholder" style="width:100%;">占位骨架</span><br>
+        <span class="SkeletonPlaceholder" style="width:100%;">占位骨架</span><br>
+        <span class="SkeletonPlaceholder" style="width:70%;">占位骨架</span><br>
+    </div>
+</template>
+
+
+
+<!--封面参数-->
+
+<template id="index-titlebg">        linear-gradient(0deg, #fff, #e1f5ff) </template>
+<template id="inspirations-titlebg"> linear-gradient(0deg, #fff, #e1f5ff) </template>
+<template id="blog-titlebg">         linear-gradient(0deg, #fff, #e1f5ff) </template>
+<template id="about-titlebg">        linear-gradient(0deg, #fff, #e1f5ff) </template>
+
+<!--Header模板-->
+
+<template id="index-title"><div class="HeaderTitleCenter"><b>Framework IROHA</b><div class="HeaderSubtitleCenter">无后端博客框架</div></div></template>
+<template id="inspirations-title"><div class="HeaderTitleLeft">灵感</div></template>
+<template id="blog-title"><div class="HeaderTitleLeft">百科</div></template>
+<template id="about-title"><div class="HeaderTitleLeft">关于</div></template>
+
+<template id="blog-article-title"><div class="TitleContainer"><div class="Title" id="Title" style="opacity: 1;">请稍等...</div></div></template>
+
+<!--SPA交互和渲染控制-->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {inlineMath: [['$','$']]},
+    delayStartupUntil: "configured"
+});
+</script>
+<script async src="https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML&delayStartupUntil=configured"></script>
+
+<script src="./script/framework/jquery/jquery.min.js"></script>
+<script src="./script/framework/jquery/jquery.easing.js"></script>
+
+<script src="./script/framework/framework.js"></script>
+
+<script src="./script/framework/list.js"></script>
+
+<script src="./script/framework/inspiration.js"></script>
+
+<script src="./script/framework/highlight/highlight.js"></script>
+<script src="./script/framework/mikumark.js"></script>
+<script src="./script/framework/article.js"></script>
+
+<script>
+
+////////////////////////////////////////////////////////
+//
+//  页 面 冷 启 动 流 程
+//
+////////////////////////////////////////////////////////
+
+(() => {
+    SPA_RegisterTriggers();
+    ActionsOnReady();
+
+    window.onload = () => {
+        console.log("%c ★ Framework Iroha ★ ", "font-size: 16px; height: 26px; line-height: 26px; border-radius: 5px; text-align: center; color:#fff; background: linear-gradient(to right, rgb(255, 94, 134), rgb(210, 162, 255), rgb(36, 200, 255));");
+        console.log(`版本 4.0 (2019.10.23)`);
+        console.log(`版权所有 © 2016-2019 Mikukonai (https://github.com/mikukonai)`);
+        console.log(`Git仓库：https://github.com/mikukonai/Iroha`);
+        console.log(``);
+        let HashString = (window.location.hash === "") ? "#/index" : window.location.hash;
+        SPA_Render(HashString);
+        if(!history.state) {
+            history.pushState({PageID: HashString}, '', window.location.href);
+            SCROLL_POSITION_STACK.push(window.pageYOffset);
+        }
+    };
+
+    window.onresize = () => {
+        ArrangeSideButtonLayout();
+    };
+
+    // 返回按钮动作
+    window.onpopstate = (e) => {
+        let prevScrollY = SCROLL_POSITION_STACK.pop() || 0;
+        let currentPath = e.state.PageID;
+        let pageId = currentPath.split("/")[0];
+        if(!e.state) {
+            console.log(`目标state为空`);
+        }
+        else {
+            SPA_Render(currentPath, () => {
+                // 跳转到标题处
+                if(pageId === "blog" || pageId === "wiki") {
+                    $('html').scrollTop(prevScrollY);
+                }
+            });
+        }
+    };
+
+    $(window).resize();
+    $(window).scroll();
+
+})();
+
+</script>
+</body>
+</html>

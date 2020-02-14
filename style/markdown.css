@@ -1,0 +1,488 @@
+/* Framework IROHA V4 */
+/* Mikumark Markdown CSS */
+
+/********** 样式参数 **********/
+
+@media(min-width:651px) { /* Desktop */
+    :root {
+        --p_font_size: 15px;       /* 正文段落 字体大小，此值是全部正文字体的基准大小 */
+        --p_line_height: 25px;     /* 正文段落 行高 */
+        --p_margin_bottom: 20px;   /* 正文段落 底部段间距 */
+        --p_color: #222;      /* 正文段落 字体颜色 */
+
+        --quote_p_margin: 10px;    /* 引用段落 上下段间距 */
+
+        --hx_margin_bottom: 15px;  /* 标题 底部间距*/
+
+        --table_border_color: #f5f5f5; /* 表格 边框颜色（同单元格边框颜色）*/
+        --cell_line_height: 21px;        /* 单元格 行高*/
+        --cell_padding_hori: 14px;       /* 单元格 左右边距*/
+        --cell_padding_vert: 7px;        /* 单元格 上下边距*/
+
+        --code_line_height: 20px;          /* 代码 行高 */
+        --code_background_color:#f7f7f7; /* 代码 背景色 */
+
+        --img_max_width: 90%;        /* 图片 最大宽度 */
+        --img_max_height: 800px;     /* 图片 最大高度 */
+    }
+}
+@media(max-width:650px) { /* Mobile */
+    :root {
+        --p_font_size: 14px;       /* 正文段落 字体大小，此值是全部正文字体的基准大小 */
+        --p_line_height: 24px;     /* 正文段落 行高 */
+        --p_margin_bottom: 11px;   /* 正文段落 底部段间距 */
+        --p_color: #222;      /* 正文段落 字体颜色 */
+
+        --quote_p_margin: 10px;    /* 引用段落 上下段间距 */
+
+        --hx_margin_bottom: 11px;  /* 标题 底部间距*/
+
+        --table_border_color: #f5f5f5; /* 表格 边框颜色（同单元格边框颜色）*/
+        --cell_line_height: 21px;        /* 单元格 行高*/
+        --cell_padding_hori: 5px;        /* 单元格 左右边距*/
+        --cell_padding_vert: 5px;        /* 单元格 上下边距*/
+
+        --code_line_height: 20px;          /* 代码 行高 */
+        --code_background_color:#f7f7f7; /* 代码 背景色 */
+
+        --img_max_width: 320px;      /* 图片 最大宽度 */
+        --img_max_height: 800px;     /* 图片 最大高度 */
+    }
+}
+
+/********** 基本段内样式 **********/
+
+strong { font-weight: bold; }
+s, strike, del { text-decoration: line-through; }
+i, cite, em, var, address, dfn { font-style: italic;}
+
+/********** 段落样式 **********/
+
+@media(min-width:651px) { /* Desktop */
+    /* 段落基础样式（只可改动参数） */
+    p.MikumarkParagraph {
+        margin: var(--p_margin_bottom) 0;
+        color: var(--p_color);
+        font-size: var(--p_font_size);
+        line-height: var(--p_line_height);
+        word-wrap: break-word;
+        overflow-x: auto;
+    }
+}
+@media(max-width:650px) { /* Mobile */
+    /* 段落基础样式（只可改动参数） */
+    p.MikumarkParagraph {
+        margin: var(--p_margin_bottom) 0;
+        color: var(--p_color);
+        font-size: var(--p_font_size);
+        line-height: var(--p_line_height);
+        word-wrap: break-word;
+        overflow-x: auto;
+    }
+}
+
+/********** 标题样式 **********/
+
+@media(min-width:651px) { /* Desktop */
+    /* 各级标题基础样式（只可改动参数） */
+    h1.MikumarkTitle,
+    h2.MikumarkTitle,
+    h3.MikumarkTitle,
+    h4.MikumarkTitle,
+    h5.MikumarkTitle,
+    h6.MikumarkTitle {
+        margin: calc(var(--hx_margin_bottom) / 2) 0 var(--hx_margin_bottom) 0;
+        font-family: inherit;
+        font-weight: normal;
+        letter-spacing: 1px;
+        text-rendering: optimizelegibility;
+    }
+    /* 标题样式（可直接改动） */
+    h1.MikumarkTitle {font-size:22px;line-height:40px;font-weight:bold;color:var(--p_color);}
+    h2.MikumarkTitle {font-size:19px;line-height:36px;font-weight:bold;color:var(--p_color);}
+    h3.MikumarkTitle {font-size:17px;line-height:30px;font-weight:bold;color:var(--p_color);}
+    h4.MikumarkTitle {font-size:15px;line-height:23px;font-weight:bold;color:var(--p_color);}
+    h5.MikumarkTitle {font-size:14px;line-height:23px;font-weight:bold;color:var(--p_color);}
+    h6.MikumarkTitle {font-size:14px;line-height:23px;font-weight:bold;color:var(--p_color);}
+}
+@media(max-width:650px) { /* Mobile */
+    /* 各级标题基础样式（只可改动参数） */
+    h1.MikumarkTitle,
+    h2.MikumarkTitle,
+    h3.MikumarkTitle,
+    h4.MikumarkTitle,
+    h5.MikumarkTitle,
+    h6.MikumarkTitle {
+        margin: calc(var(--hx_margin_bottom) / 2) 0 var(--hx_margin_bottom) 0;
+        font-family: inherit;
+        font-weight: normal;
+        letter-spacing: 1px;
+        text-rendering: optimizelegibility;
+    }
+    /* 标题样式（可直接改动） */
+    h1.MikumarkTitle {font-size:21px;line-height:40px;font-weight:bold;color:var(--p_color);}
+    h2.MikumarkTitle {font-size:18px;line-height:36px;font-weight:bold;color:var(--p_color);}
+    h3.MikumarkTitle {font-size:16px;line-height:30px;font-weight:bold;color:var(--p_color);}
+    h4.MikumarkTitle {font-size:14px;line-height:23px;font-weight:bold;color:var(--p_color);}
+    h5.MikumarkTitle {font-size:14px;line-height:23px;font-weight:bold;color:var(--p_color);}
+    h6.MikumarkTitle {font-size:14px;line-height:23px;font-weight:bold;color:var(--p_color);}
+}
+
+/********** 表格样式 **********/
+
+.MikumarkTableContainer {
+    overflow-x: auto;
+    margin: 20px auto 20px auto;
+    border-radius: 8px;
+    box-shadow: 0 1px 1px 0 rgba(64,64,64,0.08), 0 1px 3px 1px rgba(64,64,64,0.16);
+}
+@media(min-width:651px) { /* Desktop */
+    /* 表格和单元格基础样式（只可改动参数） */
+    .MikumarkTable {
+        color: var(--p_color);
+        font-size: calc(var(--p_font_size) - 1px);
+        /* border: 2px solid var(--table_border_color); */
+        border-collapse: collapse;
+        width: 100%;
+        background-color: transparent;
+        border-spacing: 0;
+    }
+    .MikumarkTable tr {
+        border-bottom: 1px solid var(--table_border_color);
+    }
+    .MikumarkTable td,
+    .MikumarkTable th {
+        min-width: 4em;
+        line-height: var(--cell_line_height);
+        vertical-align: middle;
+        text-align: center;
+        padding: var(--cell_padding_vert) var(--cell_padding_hori);
+    }
+    /* 去掉表头和最后一行的横线 */
+    .MikumarkTable tr:last-child,
+    .MikumarkTable tr:first-child {
+        border: none;
+    }
+    /* 表头样式（可直接改动） */
+    .MikumarkTable th {
+        font-weight: bold;
+        background-color: #f5f5f5;
+    }
+}
+@media(max-width:650px) { /* Mobile */
+    /* 表格和单元格基础样式（只可改动参数） */
+    .MikumarkTable {
+        color: var(--p_color);
+        font-size: calc(var(--p_font_size) - 1px);
+        /* border: 2px solid var(--table_border_color); */
+        border-collapse: collapse;
+        width: 100%;
+        background-color: transparent;
+        border-spacing: 0;
+    }
+    .MikumarkTable tr {
+        border-bottom: 1px solid var(--table_border_color);
+    }
+    .MikumarkTable td,
+    .MikumarkTable th {
+        min-width: 4em;
+        line-height: var(--cell_line_height);
+        vertical-align: middle;
+        text-align: center;
+        /* border: 1px solid var(--table_border_color); */
+        padding: var(--cell_padding_vert) var(--cell_padding_hori);
+    }
+    /* 去掉表头和最后一行的横线 */
+    .MikumarkTable tr:last-child,
+    .MikumarkTable tr:first-child {
+        border: none;
+    }
+    /* 表头样式（可直接改动） */
+    .MikumarkTable th {
+        font-weight: bold;
+        background-color: #f9f9f9;
+    }
+}
+
+/********** 块引用样式 **********/
+
+@media(min-width:651px) { /* Desktop */
+    /* 引用框样式（部分可直接改动） */
+    blockquote.MikumarkBlockquote {
+        background-color: inherit;
+        font-size: calc(var(--p_font_size) - 1px);
+        line-height: calc(var(--p_line_height) - 2px);
+        padding: 5px 10px 5px 14px;
+        margin: var(--p_margin_bottom) 0;
+        border-left: 3px solid #99ddff;
+        border-radius: 5px;
+        box-shadow: 0 1px 1px 0 rgba(64,64,64,0.08), 0 1px 3px 1px rgba(64,64,64,0.16);
+    }
+    blockquote.MikumarkBlockquote p.MikumarkParagraph {
+        margin: var(--quote_p_margin) 0;
+        font-size: inherit;
+        line-height: inherit;
+        overflow-x: auto;
+    }
+    blockquote.MikumarkBlockquote ul.MikumarkList,
+    blockquote.MikumarkBlockquote ol.MikumarkList {
+        font-size: inherit;
+        line-height: inherit;
+    }
+}
+@media(max-width:650px) { /* Mobile */
+    /* 引用框样式（部分可直接改动） */
+    blockquote.MikumarkBlockquote {
+        background-color: inherit;
+        font-size: calc(var(--p_font_size) - 1px);
+        line-height: calc(var(--p_line_height) - 2px);
+        padding: 5px 10px 5px 14px;
+        margin: var(--p_margin_bottom) 0;
+        border-left: 3px solid #99ddff;
+        border-radius: 5px;
+        box-shadow: 0 1px 1px 0 rgba(64,64,64,0.08), 0 1px 3px 1px rgba(64,64,64,0.16);
+    }
+    blockquote.MikumarkBlockquote p.MikumarkParagraph {
+        margin: var(--quote_p_margin) 0;
+        font-size: inherit;
+        line-height: inherit;
+        overflow-x: auto;
+    }
+    blockquote.MikumarkBlockquote ul.MikumarkList,
+    blockquote.MikumarkBlockquote ol.MikumarkList {
+        font-size: inherit;
+        line-height: inherit;
+    }
+}
+
+/********** 链接样式 **********/
+
+@media(min-width:651px) { /* Desktop */
+    /* 超链接样式（部分可直接改动） */
+    a.MikumarkLink {
+        color: inherit;
+        text-decoration: none;
+        border-bottom: 1px dotted var(--p_color);
+    }
+    a.MikumarkLink:hover{
+        color: #0066dd;
+        text-decoration:none;
+        border-bottom: 1px solid #0066dd;
+    }
+}
+@media(max-width:650px) { /* Mobile */
+    /* 超链接样式（部分可直接改动） */
+    a.MikumarkLink{color: #558bc4;text-decoration: none;}
+    a.MikumarkLink:hover{color:#0066dd;text-decoration:underline;}
+}
+
+/********** 列表样式 **********/
+
+@media(min-width:651px) { /* Desktop */
+    /* 列表和表项样式（部分可直接改动） */
+    ul.MikumarkList,
+    ol.MikumarkList {
+        color: var(--p_color);
+        padding-left: 2em;
+        text-indent: 0;
+        font-size: var(--p_font_size);
+        margin: calc(var(--p_margin_bottom) / 2) 0;
+        display: block;
+        line-height: var(--p_line_height);
+        font-weight: inherit;
+        word-wrap:break-word;
+    }
+    li.MikumarkListItem {
+        max-width: 100%;
+        line-height: var(--p_line_height);
+        word-wrap:break-word;
+    }
+}
+@media(max-width:650px) { /* Mobile */
+    /* 列表和表项样式（部分可直接改动） */
+    ul.MikumarkList,
+    ol.MikumarkList {
+        color: var(--p_color);
+        padding-left: 2em;
+        text-indent: 0;
+        font-size: var(--p_font_size);
+        margin: calc(var(--p_margin_bottom) / 2) 0;
+        display: block;
+        line-height: var(--p_line_height);
+        font-weight: inherit;
+        word-wrap:break-word;
+    }
+    li.MikumarkListItem {
+        max-width: 100%;
+        line-height: var(--p_line_height);
+        word-wrap:break-word;
+    }
+}
+
+/********** 代码样式 **********/
+
+@media(min-width:651px) { /* Desktop */
+    /* 代码区样式（部分可直接改动） */
+    code.MikumarkCode {
+        padding: 2px 4px;
+        background-color: var(--code_background_color);
+        font-size: calc(var(--p_font_size) - 1px);
+        line-height: var(--code_line_height);
+        border-radius: 3px;
+        font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+        -webkit-font-smoothing: antialiased;
+    }
+    pre.MikumarkPre {
+        tab-size: 4;
+        display: block;
+        padding: 10px;
+        margin: var(--p_margin_bottom) 0;
+        overflow-x: auto;
+        background-color: var(--code_background_color);
+        border-radius: 5px;
+    }
+    pre.MikumarkPre code.MikumarkCode { padding: 0; }
+}
+@media(max-width:650px) { /* Mobile */
+    /* 代码区样式（部分可直接改动） */
+    code.MikumarkCode {
+        padding: 2px 4px;
+        background-color: var(--code_background_color);
+        font-size: calc(var(--p_font_size) - 1px);
+        line-height: var(--code_line_height);
+        border-radius: 3px;
+        font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+        -webkit-font-smoothing: antialiased;
+    }
+    pre.MikumarkPre {
+        tab-size: 4;
+        display: block;
+        padding: 10px;
+        margin: var(--p_margin_bottom) 0;
+        overflow-x: auto;
+        background-color: var(--code_background_color);
+        border-radius: 5px;
+    }
+    pre.MikumarkPre code.MikumarkCode { padding: 0; }
+}
+
+/********** 图片样式 **********/
+
+@media(min-width:651px) { /* Desktop */
+    /* 图片样式（部分可直接改动） */
+    img.MikumarkImage {
+        max-width: var(--img_max_width);
+        max-height: var(--img_max_height);
+        vertical-align: middle;
+        border: none;
+    }
+    div.MikumarkImageContainer {
+        padding: 10px 0;
+        margin: var(--p_margin_bottom) auto;
+        text-align: center;
+    }
+    div.MikumarkImageTitle {
+        font-size: calc(var(--p_font_size) - 1px);
+        line-height: calc(var(--p_line_height) - 1px);
+        margin-top: 8px;
+        color: #999999;
+    }
+}
+@media(max-width:650px) { /* Mobile */
+    /* 图片样式（部分可直接改动） */
+    img.MikumarkImage {
+        max-width: var(--img_max_width);
+        max-height: var(--img_max_height);
+        vertical-align: middle;
+        border: none;
+    }
+    div.MikumarkImageContainer {
+        padding: 10px 0;
+        margin: var(--p_margin_bottom) auto;
+        text-align: center;
+    }
+    div.MikumarkImageTitle {
+        font-size: calc(var(--p_font_size) - 1px);
+        line-height: calc(var(--p_line_height) - 1px);
+        margin-top: 8px;
+        color: #999999;
+    }
+}
+
+/********** 标签样式 **********/
+
+.MikumarkTag {
+    font-size: calc(var(--p_font_size) - 1px);
+    color: #0099e6;
+    /* font-weight: bold; */
+    padding: 0 5px;
+    background-color: #e4f6ff;
+    border-radius: 100px;
+}
+
+/********** 水平线样式 **********/
+
+@media(min-width:651px) { /* Desktop */
+    hr.MikumarkHorizontalLine {
+        margin: var(--p_margin_bottom) 0px;
+        height: 0px;
+        border: 0;
+        border-top: 2px solid #eeeeee;
+        border-bottom: 1px solid #ffffff;
+    }
+}
+@media(max-width:650px) { /* Mobile */
+    hr.MikumarkHorizontalLine {
+        margin: var(--p_margin_bottom) 0px;
+        height: 0px;
+        border: 0;
+        border-top: 2px solid #eeeeee;
+        border-bottom: 1px solid #ffffff;
+    }
+}
+
+/********** 按钮样式 **********/
+
+.MikumarkButton {
+    line-height:0px; height:30px; font-size: 14px; border: none; border-radius: 5px;
+    color: #00aaff; border: 1px solid #e1f5ff; background-color: #e1f5ff; padding: 3px 10px 3px 10px; }
+.MikumarkButton:hover { color: #00aaff; background-color: #cdeeff; border: 1px solid #cdeeff; }
+.MikumarkButton:active { color: #ffffff; background-color: #40bfff; border: 1px solid #40bfff; }
+.MikumarkButton:disabled { color: #888888; background-color: #eeeeee; border: 1px solid #eeeeee; }
+
+.MikumarkButtonRed {
+    line-height:0px; height:30px; font-size: 14px; border: none; border-radius: 5px;
+    color: #ff5888; border: 1px solid #ffefef; background-color: #ffefef; padding: 3px 10px 3px 10px; }
+.MikumarkButtonRed:hover { color: #ff5888; background-color: #ffe3ef; border: 1px solid #ffe3ef; }
+.MikumarkButtonRed:active { color: #ffffff; background-color: #ff5888; border: 1px solid #ff5888; }
+.MikumarkButtonRed:disabled { color: #888888; background-color: #eeeeee; border: 1px solid #eeeeee; }
+
+.MikumarkButtonGreen {
+    line-height:0px; height:30px; font-size: 14px; border: none; border-radius: 5px;
+    color: #60c700; border: 1px solid #e7ffd0; background-color: #e7ffd0; padding: 3px 10px 3px 10px; }
+.MikumarkButtonGreen:hover { color: #60c700; background-color: #d8fcb7; border: 1px solid #d8fcb7; }
+.MikumarkButtonGreen:active { color: #ffffff; background-color: #60c700; border: 1px solid #60c700; }
+.MikumarkButtonGreen:disabled { color: #888888; background-color: #eeeeee; border: 1px solid #eeeeee; }
+
+.MikumarkButtonYellow {
+    line-height:0px; height:30px; font-size: 14px; border: none; border-radius: 5px;
+    color: #d6b600; border: 1px solid #fff7c7; background-color: #fff7c7; padding: 3px 10px 3px 10px; }
+.MikumarkButtonYellow:hover { color: #d6b600; background-color: #fff2ac; border: 1px solid #fff2ac; }
+.MikumarkButtonYellow:active { color: #ffffff; background-color: #ffd900; border: 1px solid #ffd900; }
+.MikumarkButtonYellow:disabled { color: #888888; background-color: #eeeeee; border: 1px solid #eeeeee; }
+
+/********** 代码高亮样式（暂不用） **********/
+
+.MikumarkCode_number { color:#44aadd; }
+.MikumarkCode_comment { color:#999999; /*font-weight:bold;*/ }
+.MikumarkCode_keyword { color:#1111ff; /*font-weight:bold;*/ }
+.MikumarkCode_string { color:green; }
+.MikumarkCode_boolean { color:#66ccff; }
+.MikumarkCode_type { color: #af00db; }
+.MikumarkCode_macro { color:#2E8B57; font-weight:bold; }
+.MikumarkCode_operator { color:#111111; }
+.MikumarkCode_function { color:#795e26; }
+.MikumarkCode_quote { color:#228B22; }
+.MikumarkCode_precompile { color:#800080; }
+.MikumarkCode_identifier { color:#000000; }
+.MikumarkCode_member { color:#ff0000; }
