@@ -76,9 +76,16 @@ function LoadArticle(PageID, ArticleID) {
     ///////////////////////////////////////////////////////
 
     // 菜单折叠状态切换
-    function MenuToggle() {
-        let state = $("#MenuButton").attr("data-state");
+    function MenuToggle(state) {
+        let currentState = $("#MenuButton").attr("data-state");
         if(state === "on") {
+            currentState = "off";
+        }
+        else if(state === "off") {
+            currentState = "on";
+        }
+
+        if(currentState === "on") {
             $("#MenuButton").attr("data-state", "off");
             $("#MenuButton").html("menu");
             if(GetMediaType() === "Desktop") {
@@ -90,7 +97,7 @@ function LoadArticle(PageID, ArticleID) {
                 });
             }
         }
-        else if(state === "off") {
+        else if(currentState === "off") {
             $("#MenuButton").attr("data-state", "on");
             $("#MenuButton").html("close");
             if(GetMediaType() === "Desktop") {
@@ -144,6 +151,9 @@ function LoadArticle(PageID, ArticleID) {
             ShowTopTitleOnThreshold();
             ActionsOnScroll();
         };
+
+        // 关闭所有已经打开的目录菜单
+        MenuToggle("off");
 
         // MathJax刷新
         MathJax.Hub.Configured();
