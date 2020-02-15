@@ -98,10 +98,16 @@ i, cite, em, var, address, dfn { font-style: italic;}
         text-rendering: optimizelegibility;
     }
     /* 标题样式（可直接改动） */
-    h1.MikumarkTitle {font-size:22px;line-height:40px;font-weight:bold;color:var(--p_color);}
-    h2.MikumarkTitle {font-size:19px;line-height:36px;font-weight:bold;color:var(--p_color);}
-    h3.MikumarkTitle {font-size:17px;line-height:30px;font-weight:bold;color:var(--p_color);}
-    h4.MikumarkTitle {font-size:15px;line-height:23px;font-weight:bold;color:var(--p_color);}
+    h1.MikumarkTitle {font-size:20px;line-height:42px;font-weight:bold;
+        color: #66bbdd;
+        background: linear-gradient(90deg, #f0faff, #fff);
+        left: calc(0px - var(--MikumarkHorizontalPadding));
+        position: relative;
+        padding-left: var(--MikumarkHorizontalPadding);
+    }
+    h2.MikumarkTitle {font-size:18px;line-height:36px;font-weight:bold;color:var(--p_color);}
+    h3.MikumarkTitle {font-size:16px;line-height:30px;font-weight:bold;color:var(--p_color);}
+    h4.MikumarkTitle {font-size:14px;line-height:23px;font-weight:bold;color:var(--p_color);}
     h5.MikumarkTitle {font-size:14px;line-height:23px;font-weight:bold;color:var(--p_color);}
     h6.MikumarkTitle {font-size:14px;line-height:23px;font-weight:bold;color:var(--p_color);}
 }
@@ -120,7 +126,13 @@ i, cite, em, var, address, dfn { font-style: italic;}
         text-rendering: optimizelegibility;
     }
     /* 标题样式（可直接改动） */
-    h1.MikumarkTitle {font-size:21px;line-height:40px;font-weight:bold;color:var(--p_color);}
+    h1.MikumarkTitle {font-size:20px;line-height:42px;font-weight:bold;
+        color: #66bbdd;
+        background: linear-gradient(90deg, #f0faff, #fff);
+        left: calc(0px - var(--MikumarkHorizontalPadding));
+        position: relative;
+        padding-left: var(--MikumarkHorizontalPadding);
+    }
     h2.MikumarkTitle {font-size:18px;line-height:36px;font-weight:bold;color:var(--p_color);}
     h3.MikumarkTitle {font-size:16px;line-height:30px;font-weight:bold;color:var(--p_color);}
     h4.MikumarkTitle {font-size:14px;line-height:23px;font-weight:bold;color:var(--p_color);}
