@@ -169,14 +169,11 @@ body { font-family: Microsoft YaHei, "宋体", "Helvetica Neue", Helvetica, Aria
 /****************************************/
 
 /* 灵感目录 */
-.InspirationMenu { position: fixed; left: 0; top: 0; width: 360px; height: 100%; background-color: #fff; text-align: left; font-size: 14px; color: #80868b; border-right: 1px solid #eeeeee; overflow: auto; z-index: 9999;}
-.InspirationMenu::-webkit-scrollbar { width: 5px; }
-.InspirationMenu::-webkit-scrollbar-thumb { border-radius: 10px; background: #e0e0e0; }
-.InspirationMenu::-webkit-scrollbar-track { border-radius: 0; background: #f5f5f5; }
-.InspirationMenuToggle { font-family: "Material Icons"; width: 40px; height: 40px; position: fixed; top: 20px; left: 20px; text-align: center; font-size: 20px; z-index: 10000; cursor: pointer;}
-.InspirationMenuTitleContainer { position: sticky; top: 0px; color: #696a6b; background-color: #fff; box-shadow: 0 0 5px #ccc; z-index: 9999;}
+/* .InspirationMenu { position: fixed; left: 0; top: 0; width: 360px; height: 100%; background-color: #fff; text-align: left; font-size: 14px; color: #80868b; border-right: 1px solid #eeeeee; overflow: auto; z-index: 9999;} */
+/* .InspirationMenuToggle { font-family: "Material Icons"; width: 40px; height: 40px; position: fixed; top: 20px; left: 20px; text-align: center; font-size: 20px; z-index: 10000; cursor: pointer;} */
+/* .InspirationMenuTitleContainer { position: sticky; top: 0px; color: #696a6b; background-color: #fff; box-shadow: 0 0 5px #ccc; z-index: 9999;} */
 .InspirationMenuTitle { font-size: 22px; line-height: 80px; height: 80px; padding-left: 78px;}
-#InspirationMenuTags { margin: 15px 0 25px 0; padding-left: 30px;}
+#InspirationMenuTags { margin: 15px 0 25px 0; padding-left: 30px; padding-right: 20px; }
 .InspirationMenuTagItem { display: inline-block; background-color: #e1f5ff; color: #009be9; border: none; border-radius: 5px; font-size: 12px; padding: 2px 6px 2px 6px; margin: 3px; word-break: break-all; word-wrap: break-word; cursor: pointer;}
 .InspirationMenuTagItem:hover, .InspirationMenuTagItem_active { color: #ff6893; background-color: #ffdfe8;}
 .InspirationMenuTagItem_clear { background-color: #eeeeee; color: #a0a0a0;}
@@ -262,12 +259,25 @@ body { font-family: Microsoft YaHei, "宋体", "Helvetica Neue", Helvetica, Aria
 
 /* 菜单容器 */
 @media(min-width:651px){
-    .MenuContainer { width: 40px; height: 40px; top: 20px; right: 0; position: absolute; color: #222222; background-color: #ffffff; box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302), 0 1px 3px 1px rgba(60,64,67,0.149); transition: box-shadow 0.1s linear,min-width .15s cubic-bezier(0.4,0.0,0.2,1); border-radius: 50%; border: none; line-height: 40px; text-align: left; font-size: 13px; overflow: hidden; }
+    .MenuContainer { width: 40px; height: 40px; top: 20px; right: 0; position: absolute; color: #222222; background-color: #ffffff; box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302), 0 1px 3px 1px rgba(60,64,67,0.149); transition: box-shadow 0.1s linear,min-width .15s cubic-bezier(0.4,0.0,0.2,1); border-radius: 50%; border: none; text-align: left; font-size: 13px; overflow: hidden; }
     .MenuContainer:hover, .MenuContainer:focus { box-shadow: 0 1px 3px 0 rgba(60,64,67,0.302), 0 4px 8px 3px rgba(60,64,67,0.149); }
 }
 @media(max-width:650px){
-    .MenuContainer { height: 40px; width: 40px; position: absolute; right: 0; color: #222222; background-color: rgba(0,0,0,0); border: none; border-radius: 20px; line-height: 40px; text-align: left; font-size: 13px; overflow: hidden; }
+    .MenuContainer { height: 40px; width: 40px; position: absolute; right: 0; color: #222222; background-color: rgba(0,0,0,0); border: none; border-radius: 20px; text-align: left; font-size: 13px; overflow: hidden; }
 }
+
+/* 菜单内容容器 */
+@media(min-width:651px){
+    .MenuContentContainer { height: 520px; overflow:auto; }
+}
+@media(max-width:650px){
+    .MenuContentContainer { height: calc(100% - 80px); overflow:auto; }
+}
+
+/* 菜单内容容器的滚动条 */
+.MenuContentContainer::-webkit-scrollbar { width: 5px; }
+.MenuContentContainer::-webkit-scrollbar-thumb { border-radius: 10px; background: #e0e0e0; }
+.MenuContentContainer::-webkit-scrollbar-track { border-radius: 0; background: #f5f5f5; }
 
 /* 菜单按钮 */
 @media(min-width:651px){
@@ -291,9 +301,6 @@ body { font-family: Microsoft YaHei, "宋体", "Helvetica Neue", Helvetica, Aria
 .ContentsItem:hover { text-decoration: underline; }
 .ContentsItemActive { color: #00aaff; }
 
-/* 目录内容容器 */
-@media(min-width:651px){ #ContentsContainer { height: 520px; overflow: auto; } }
-@media(max-width:650px){ #ContentsContainer { height: calc(100% - 80px); overflow: auto; } }
 
 /****************************************/
 /*  关 于 页 样 式 */

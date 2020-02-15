@@ -134,7 +134,7 @@ function LoadList(articleType) {
         }
 
         // 淡入动画
-        SlideInOneByOne("enter", 0, 700, 1);
+        SlideInOneByOne("enter", 10, 1000, 50);
 
         console.log(`[Iroha-SPA] 列表渲染完毕，计 ${ListObject.items.length} 项`);
     }

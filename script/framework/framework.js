@@ -90,7 +90,8 @@ function SPA_Render(pathString, callback) {
         else if(GetMediaType() === "Mobile") {
             $("#MainNavbar").hide();
         }
-        
+        // 创建菜单内容的锚点"ContentsContainer"
+        $("#MenuContentContainer").html(`<div id="ContentsContainer"></div>`);
         // 标题和页面内容（框架）
         $('.SPA_MAIN_CONTAINER').html($(`template#${PageID}-article`).html());
         $('.SPA_TITLE_CONTAINER').html($(`template#${PageID}-article-title`).html());
@@ -101,12 +102,12 @@ function SPA_Render(pathString, callback) {
     else {
         // 页面标题
         $("title").html("Iroha");
-        // 不显示返回和菜单按钮
-        $("#BackButton").hide();
-        $(".MenuContainer").hide();
         // 控制导航栏和顶栏的显示
         $(".StickyTitleContainer").hide();
         $("#MainNavbar").show();
+        // 不显示返回和菜单按钮
+        $("#BackButton").hide();
+        $(".MenuContainer").hide();
         // 标题和页面内容（框架）
         $('.SPA_MAIN_CONTAINER').html($(`template#${PageID}`).html());
         $('.SPA_TITLE_CONTAINER').html($(`template#${PageID}-title`).html());
@@ -116,14 +117,23 @@ function SPA_Render(pathString, callback) {
         $('.Header').animate({'opacity': '1'});
 
         if(PageID === "inspirations") {
+            // 不显示返回按钮
+            $("#BackButton").hide();
+            // 显示菜单（目录）按钮
+            $(".MenuContainer").show();
+            // 创建菜单内容的锚点"ContentsContainer"
+            $("#MenuContentContainer").html(`
+                <!--标签容器-->
+                <div id="InspirationMenuTags"></div>
+                <!--目录容器-->
+                <div id="InspirationMenuList"></div>
+            `);
             LoadInspirations();
         }
         else if(PageID === "blog") {
-            LoadList("blog");
-        }
-        else if(PageID === "wiki") {
+            // 默认排序方式
             SORTING_OPTION = "category";
-            LoadList("wiki");
+            LoadList("blog");
         }
     }
 
@@ -164,6 +174,10 @@ function ActionsOnReady() {
     // 进场动画
     $('body').css({'opacity': '0.5'});
     $('body').animate({'opacity': '1'});
+
+    // 绑定菜单按钮的动作
+    $('#MenuButton').off('click'); // 避免重复绑定
+    $("#MenuButton").click(() => { MenuToggle(); }); // 菜单按钮的点击事件
 }
 
 //////////////////////////////////////////////////////
@@ -240,6 +254,42 @@ function ArrangeSideButtonLayout() {
         $(".RightAside").css("right", '0px');
         $(".RightAside").css("height", "100%");
         $(".LeftAside").css("left", '0px');
+    }
+}
+
+// 菜单折叠状态切换
+function MenuToggle(state) {
+    let currentState = $("#MenuButton").attr("data-state");
+    if(state === "on") {
+        currentState = "off";
+    }
+    else if(state === "off") {
+        currentState = "on";
+    }
+
+    if(currentState === "on") {
+        $("#MenuButton").attr("data-state", "off");
+        $("#MenuButton").html("menu");
+        if(GetMediaType() === "Desktop") {
+            $("#MenuContainer").animate({width: "40px", height: "40px"}, 200, "easeOutExpo");
+        }
+        else if(GetMediaType() === "Mobile") {
+            $("#MenuContainer").animate({width: "40px", height: "40px"}, 200, "easeOutExpo", ()=> {
+                $("#MenuContainer").css("background", "transparent");
+            });
+        }
+    }
+    else if(currentState === "off") {
+        $("#MenuButton").attr("data-state", "on");
+        $("#MenuButton").html("close");
+        if(GetMediaType() === "Desktop") {
+            $("#MenuContainer").css("border-radius", "20px");
+            $("#MenuContainer").animate({width: "400px", height: "600px"}, 200, "easeOutExpo");
+        }
+        else if(GetMediaType() === "Mobile") {
+            $("#MenuContainer").css("background-color", "#ffffff");
+            $("#MenuContainer").animate({width: $(window).width(), height: "100%"}, 200, "easeOutExpo");
+        }
     }
 }
 

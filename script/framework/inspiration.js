@@ -215,16 +215,6 @@ function LoadInspirations() {
         return InverseIndex;
     }
 
-    // 导航栏状态切换
-    function NavboxToggle() {
-        if($("#InspirationMenu").css("margin-left") !== "0px") {
-            $("#InspirationMenu").animate({"margin-left": "0px", opacity: "1"}, 500, "easeOutExpo");
-        }
-        else {
-            $("#InspirationMenu").animate({"margin-left": "-360px", opacity: "0"}, 500, "easeOutExpo");
-        }
-    }
-
     // 绘制所有Posters
     function PaintPosters() {
         $('#InspirationContainer').html(html);
@@ -276,9 +266,7 @@ function LoadInspirations() {
             $(e).click(() => {
                 let posterId = $(e).attr("data-poster-id");
                 TurnTo(posterId);
-                if(GetMediaType() === "Mobile") {
-                    NavboxToggle();
-                }
+                MenuToggle("off");
             });
         });
 
@@ -299,7 +287,11 @@ function LoadInspirations() {
     }
 
     function Paint() {
+        // 关闭所有已经打开的目录菜单
+        MenuToggle("off");
+        // 绘制内容
         PaintPosters();
+        // 绘制目录
         PaintNavbox(Array.from(posters.keys()));
     }
 
@@ -337,18 +329,6 @@ function LoadInspirations() {
     };
     xhr.send();
 
-
-    window.onresize = () => {
-        // Desktop
-        if(GetMediaType() === "Desktop") {
-            $(".InspirationMenuToggle").show();
-            $(".InspirationMenu").show();
-        }
-        else if(GetMediaType() === "Mobile"){
-            $("#InspirationMenu").css("margin-left", "-360px");
-        }
-    };
-
     // 指示滚动位置
     window.onscroll = () => {
         let visiblePosterId = GetVisiblePoster();
@@ -357,8 +337,5 @@ function LoadInspirations() {
     };
 
     $(window).resize();
-
-    // 导航栏折叠按钮
-    $("#InspirationMenuToggle").click(()=>{ NavboxToggle(); });
 
 }

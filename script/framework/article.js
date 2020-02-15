@@ -75,41 +75,6 @@ function LoadArticle(PageID, ArticleID) {
     //  其 他 触 发 事 件
     ///////////////////////////////////////////////////////
 
-    // 菜单折叠状态切换
-    function MenuToggle(state) {
-        let currentState = $("#MenuButton").attr("data-state");
-        if(state === "on") {
-            currentState = "off";
-        }
-        else if(state === "off") {
-            currentState = "on";
-        }
-
-        if(currentState === "on") {
-            $("#MenuButton").attr("data-state", "off");
-            $("#MenuButton").html("menu");
-            if(GetMediaType() === "Desktop") {
-                $("#MenuContainer").animate({width: "40px", height: "40px"}, 200, "easeOutExpo");
-            }
-            else if(GetMediaType() === "Mobile") {
-                $("#MenuContainer").animate({width: "40px", height: "40px"}, 200, "easeOutExpo", ()=> {
-                    $("#MenuContainer").css("background", "transparent");
-                });
-            }
-        }
-        else if(currentState === "off") {
-            $("#MenuButton").attr("data-state", "on");
-            $("#MenuButton").html("close");
-            if(GetMediaType() === "Desktop") {
-                $("#MenuContainer").css("border-radius", "20px");
-                $("#MenuContainer").animate({width: "400px", height: "600px"}, 200, "easeOutExpo");
-            }
-            else if(GetMediaType() === "Mobile") {
-                $("#MenuContainer").css("background-color", "#ffffff");
-                $("#MenuContainer").animate({width: $(window).width(), height: "100%"}, 200, "easeOutExpo");
-            }
-        }
-    }
 
     ///////////////////////////////////////////////////////
     //  文 章 渲 染 前 后 执 行 的 操 作
@@ -117,8 +82,6 @@ function LoadArticle(PageID, ArticleID) {
 
     // 在文章渲染之前执行的操作
     function BeforeRendering() {
-        $('#MenuButton').off('click'); // 避免重复绑定
-        $("#MenuButton").click(() => { MenuToggle(); }); // 菜单按钮的点击事件
         ShowTopTitleOnThreshold(); // 设置顶部标题栏状态
 
         // 删除所有已有的MikumarkScript和MikumarkStyle节点

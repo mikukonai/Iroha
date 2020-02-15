@@ -38,13 +38,15 @@
 <aside class="RightAside">
     <!--右侧：菜单（目录）-->
     <div id="MenuContainer" class="MenuContainer" style="display: none;">
+        <!--菜单顶部的导航栏，包括Toggle按钮-->
         <div class="StickyNavbar">
             <button id="MenuButton" class="MenuButton" data-state="off">menu</button>
             <nav class="Navbar" id="MenuNavbar" style="top: 40px; z-index: 100000; border: none;">
                 <button class="NavbarItem SPA_TRIGGER" active="false" data-target="index">首 页</button><button class="NavbarItem SPA_TRIGGER" active="false" data-target="inspirations">灵 感</button><button class="NavbarItem SPA_TRIGGER" active="false" data-target="blog">博 客</button><button class="NavbarItem SPA_TRIGGER" active="false" data-target="about">关 于</button>
             </nav>
         </div>
-        <div id="ContentsContainer"></div>
+        <!--菜单主题内容，一般是目录。由SPA_Render插入相应的锚点。-->
+        <div id="MenuContentContainer" class="MenuContentContainer"></div>
     </div>
     <!--右下：回到顶部按钮-->
     <button id="GoTopButton" class="Button Raised Round" style="position: absolute; bottom: 80px; right: 0;" onclick="$('html, body').animate({scrollTop:0},'fast');">
@@ -99,17 +101,6 @@
 
 <!--灵感页模板-->
 <template id="inspirations">
-    <!--左侧导航栏切换开关-->
-    <div class="Button Flat Round InspirationMenuToggle" id="InspirationMenuToggle">menu</div>
-    <!--左侧导航栏-->
-    <div class="InspirationMenu" id="InspirationMenu">
-        <!--sticky顶栏-->
-        <div class="InspirationMenuTitleContainer"><span class="InspirationMenuTitle">灵感目录</span></div>
-        <!--标签容器-->
-        <div id="InspirationMenuTags"></div>
-        <!--目录容器-->
-        <div id="InspirationMenuList"></div>
-    </div>
     <!--正文容器-->
     <div class="InspirationContainer" id="InspirationContainer"></div>
     <!--底部内容-->
