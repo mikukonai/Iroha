@@ -152,7 +152,7 @@ body { font-family: Microsoft YaHei, "宋体", "Helvetica Neue", Helvetica, Aria
 @media(min-width:651px) { /* Desktop */.IndexItemPaddingBox { margin: 0; padding: 8px 50px 8px 50px; background: transparent; }}
 @media(max-width:650px) { /* Mobile */.IndexItemPaddingBox { margin: 0; padding:8px 25px 8px 25px; background: transparent; }}
 .IndexItemTitle { font-size: 17px; line-height: 30px; text-align: left; font-weight: bold; color: #566666; vertical-align: middle; text-shadow: none; }
-@media(min-width:651px) { /* Desktop */ .IndexItemTitle::before { content:attr(data-prefix); line-height: inherit; margin-right: 10px; padding-right: 10px; border-right: 5px solid rgba(0,0,0,0.1); color: #55c3dc; font-weight: normal; }}
+@media(min-width:651px) { /* Desktop */ .IndexItemTitle::before { content:attr(data-prefix); line-height: inherit; margin-right: 10px; padding-right: 10px; font-size: smaller; border-right: 5px solid rgba(0,0,0,0.1); color: #55c3dc; font-weight: normal; }}
 @media(max-width:650px) { /* Mobile */ .IndexItemTitle::before { display: none; }}
 .IndexItemTitleLink { letter-spacing: 1px; color:#555555; text-decoration:none; cursor: pointer; }
 .IndexItemTitleLink:hover { color:#aaaaaa; text-decoration:none; }
