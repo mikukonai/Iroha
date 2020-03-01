@@ -160,7 +160,7 @@ body { font-family: Microsoft YaHei, "宋体", "Helvetica Neue", Helvetica, Aria
 .IndexItemSummary { color: #bbb; text-align: left; padding: 7px 0 3px 0; font-size: 13px; font-weight: lighter; display: block; line-height: 23px; overflow-x: auto; }
 .IndexItemTable { display: table; border-collapse: separate; border: none; border-spacing: 0; width: 100%; }
 .IndexItemTableLeft { padding-right: 10px; }
-@media(min-width:651px) { /* Desktop */ .IndexItemTableRight { width: 60px; }}
+.IndexItemTableRight { width: 50px; }
 .IndexBottomLink { line-height: 40px; padding: 5px 0 10px 0; display: block; color: #8f8f8f; font-weight: bold; font-size: 16px; text-decoration: none; text-align: center; letter-spacing: 1px; cursor: pointer; }
 .IndexBottomLink:hover { text-decoration: none; background-color: #fefefe; color:#40bfff; }
 
