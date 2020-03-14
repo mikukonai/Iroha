@@ -7,7 +7,7 @@
 }
 
 * { outline: none; }
-body { font-family: Microsoft YaHei, "宋体", "Helvetica Neue", Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
+body { font-family: "更纱黑体 SC", Microsoft YaHei, "宋体", "Helvetica Neue", Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
 ::selection{ background:#b3d4fc; text-shadow:none }
 
 /* 全局变量 */
