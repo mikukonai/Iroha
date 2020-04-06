@@ -127,14 +127,21 @@ function LoadList(articleType) {
                 else {
                     let aNumber = parseInt(a.date.replace(/\-/gi, ""));
                     let bNumber = parseInt(b.date.replace(/\-/gi, ""));
-                    return (aNumber > bNumber) ? (-1) : ((aNumber < bNumber) ? (1) : 0);
+                    if(isNaN(aNumber)) {
+                        if(isNaN(bNumber)) return 0;
+                        else return 1;
+                    }
+                    else {
+                        if(isNaN(bNumber)) return -1;
+                        else return (aNumber > bNumber) ? (-1) : ((aNumber < bNumber) ? (1) : 0);
+                    }
                 }
             });
             document.getElementById('ListContainer').innerHTML = `<div class="ListCategoryBlock">${RenderList(ListObject.items)}</div>`;
         }
 
         // 淡入动画
-        SlideInOneByOne("enter", 10, 1000, 50);
+        SlideInOneByOne("enter", 10, 1000, 5);
 
         console.log(`[Iroha-SPA] 列表渲染完毕，计 ${ListObject.items.length} 项`);
     }
