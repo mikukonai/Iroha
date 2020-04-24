@@ -119,7 +119,8 @@ body { font-family: "更纱黑体 SC", Microsoft YaHei, "宋体", "Helvetica Neu
 .RBGradient { font-family: Verdana, Arial, sans-serif, Tahoma, "宋体", Microsoft YaHei; width: fit-content; width: -moz-fit-content; width: -webkit-fit-content; margin: 0 auto; font-weight: bold; background: linear-gradient(to right, rgb(255, 94, 134), rgb(210, 162, 255), rgb(36, 200, 255)); -webkit-text-fill-color: transparent; background-clip: text; -webkit-background-clip: text; }
 
 /* 首屏加载遮罩 */
-.FirstLoadingMask { position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; padding-top: 200px; font-size: 20px; letter-spacing: 1px; color: #888; text-align: center; backdrop-filter: blur(2px); background-color: rgba(255,255,255,0.5); z-index: 99999;}
+.FirstLoadingMask { position: absolute; top: 0; left: 0; width: 100%; height: 100%; font-size: 20px; color: #888; text-align: center; backdrop-filter: blur(10px); background-color: rgba(255,255,255,0.5); z-index: 99999; }
+.ThrobberContainer { position: absolute; top: 50%; width: 100%; }
 
 /* 页面加载动效（骨架屏） */
 .SkeletonPlaceholder { display: inline-block; background-color: #e0e0e0; color: rgba(0,0,0,0); border-radius: 3px; animation: SkeletonPlaceholderBlink 1s infinite; }
