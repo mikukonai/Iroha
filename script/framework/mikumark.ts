@@ -134,8 +134,11 @@ class Mikumark {
         // 行内代码：需要特殊处理，其内的所有元字符都应被转义，防止解析成HTML标签。（不会处理已屏蔽的元字符）
         let inlineCodeSegments = RegexInlineCode.exec(HTML);
         while(inlineCodeSegments !== null) {
+            let rhs = inlineCodeSegments[1];
             HTML = HTML.replace(inlineCodeSegments[0],
-                `<code class="MikumarkCode">${Mikumark.CoverHTMLchar(Mikumark.CoverMetachar(inlineCodeSegments[1]))}</code>`);
+                `<code class="MikumarkCode"><script type="text/html" style="display: inline;">${rhs}</script></code>`);
+            // HTML = HTML.replace(inlineCodeSegments[0],
+            //     `<code class="MikumarkCode">${Mikumark.CoverHTMLchar(Mikumark.CoverMetachar(inlineCodeSegments[1]))}</code>`);
             inlineCodeSegments = RegexInlineCode.exec(HTML);
         }
 
@@ -474,7 +477,7 @@ class Mikumark {
             if(/^(>*)\s*```/g.test(para) === true) {
                 let index = parseInt(para.trim().replace(/^(>*)\s*```/g, ""));
                 let codeBlock = codeBlocks[index];
-                let code = Mikumark.RecoverHTMLchar(codeBlock.code);
+                let code = Mikumark.RecoverMetachar(Mikumark.RecoverHTMLchar(codeBlock.code));
                 HtmlBuffer[i] = `<pre class="MikumarkPre"><code class="MikumarkCode">${code}</code></pre>`;
             }
         }
