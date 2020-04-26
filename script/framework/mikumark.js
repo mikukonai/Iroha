@@ -100,7 +100,11 @@ var Mikumark = /** @class */ (function () {
         // 行内代码：需要特殊处理，其内的所有元字符都应被转义，防止解析成HTML标签。（不会处理已屏蔽的元字符）
         var inlineCodeSegments = RegexInlineCode.exec(HTML);
         while (inlineCodeSegments !== null) {
-            HTML = HTML.replace(inlineCodeSegments[0], "<code class=\"MikumarkCode\">" + Mikumark.CoverHTMLchar(Mikumark.CoverMetachar(inlineCodeSegments[1])) + "</code>");
+          var rhs = inlineCodeSegments[1];
+            HTML = HTML.replace(inlineCodeSegments[0],
+              "<code class=\"MikumarkCode\"> <script type=\"text/html\" style=\"display: inline\">"
+              + rhs
+              + "</script></code>");
             inlineCodeSegments = RegexInlineCode.exec(HTML);
         }
         // TODO 处理标签
@@ -112,7 +116,6 @@ var Mikumark = /** @class */ (function () {
             .replace(RegexColor, "<span style=\"color:$1;\">$2</span>")
             .replace(RegexSelfLink, "<a class=\"MikumarkLink\" target=\"_blank\" href=\"$1\">$1</a>")
             .replace(RegexLink, "<a class=\"MikumarkLink\" target=\"_blank\" href=\"$2\">$1</a>");
-        // return Mikumark.RecoverHTMLchar(Mikumark.RecoverMetachar(HTML));
         return Mikumark.RecoverMetachar(HTML);
     };
     // 段落级样式解析
@@ -412,7 +415,7 @@ var Mikumark = /** @class */ (function () {
             if (/^(>*)\s*```/g.test(para) === true) {
                 var index = parseInt(para.trim().replace(/^(>*)\s*```/g, ""));
                 var codeBlock = codeBlocks[index];
-                var code = Mikumark.RecoverHTMLchar(codeBlock.code);
+                var code = Mikumark.RecoverMetachar(Mikumark.RecoverHTMLchar(codeBlock.code));
                 HtmlBuffer[i] = "<pre class=\"MikumarkPre\"><code class=\"MikumarkCode\">" + code + "</code></pre>";
             }
         }
