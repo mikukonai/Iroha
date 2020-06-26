@@ -7,7 +7,7 @@
 }
 
 * { outline: none; }
-body { font-family: "更纱黑体 SC", Microsoft YaHei, "宋体", "Helvetica Neue", Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
+body { font-family: Microsoft YaHei, "宋体", "Helvetica Neue", Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
 ::selection{ background:#b3d4fc; text-shadow:none }
 
 /* 全局变量 */
@@ -153,7 +153,7 @@ body { font-family: "更纱黑体 SC", Microsoft YaHei, "宋体", "Helvetica Neu
 @media(min-width:651px) { /* Desktop */.IndexItemPaddingBox { margin: 0; padding: 8px 50px 8px 50px; background: transparent; }}
 @media(max-width:650px) { /* Mobile */.IndexItemPaddingBox { margin: 0; padding:8px 25px 8px 25px; background: transparent; }}
 .IndexItemTitle { font-size: 17px; line-height: 30px; text-align: left; font-weight: bold; color: #566666; vertical-align: middle; text-shadow: none; }
-@media(min-width:651px) { /* Desktop */ .IndexItemTitle::before { content:attr(data-prefix); line-height: inherit; margin-right: 10px; padding-right: 10px; font-size: smaller; border-right: 5px solid rgba(0,0,0,0.1); color: #55c3dc; font-weight: normal; }}
+@media(min-width:651px) { /* Desktop */ .IndexItemTitle::before { content:attr(data-prefix); line-height: inherit; margin-right: 10px; padding-right: 10px; font-size: smaller; border-right: 5px solid rgba(0,0,0,0.1); color: #55bbdd; font-weight: bold; }}
 @media(max-width:650px) { /* Mobile */ .IndexItemTitle::before { display: none; }}
 .IndexItemTitleLink { letter-spacing: 1px; color:#555555; text-decoration:none; cursor: pointer; }
 .IndexItemTitleLink:hover { color:#aaaaaa; text-decoration:none; }
@@ -189,11 +189,11 @@ body { font-family: "更纱黑体 SC", Microsoft YaHei, "宋体", "Helvetica Neu
 /* Poster 样式 */
 .Poster { margin: 0; padding: 10px 10px 10px 10px; border-bottom: 1px solid #e0e0e0; border-radius: 0; color: #666666; background-color: #ffffff; text-align: left; opacity:0.0;}
 @media(min-width:651px){ /* Desktop */.Poster { padding: 20px 40px 20px 40px;}}
-.PosterTitle { display: block; width: fit-content; width: -webkit-fit-content; width: -moz-fit-content; margin:3px 20px 0px 60px; padding:0; border-bottom: 1px dotted #dddddd; color:#498bb8; line-height: 26px; font-size:16px; letter-spacing: 1px; font-weight: bold;}
-.PosterSubtitle { display: block; text-align: left; margin:0px 20px 8px 60px; padding:0; line-height: 21px; color:#aaaaaa; font-size:12px;}
+.PosterTitle { display: block; width: fit-content; width: -webkit-fit-content; width: -moz-fit-content; margin:3px 20px 0px 60px; padding:0; border-bottom: 1px solid #dddddd; color:#222; line-height: 27px; font-size:17px; letter-spacing: 1px; font-weight: bold;}
+.PosterSubtitle { display: block; text-align: left; margin:0px 20px 8px 60px; padding:0; line-height: 22px; color:#aaaaaa; font-size:13px;}
 .PosterAvater { float:left; position:relative; top:6px; left:6px; margin:0; padding:0; border-radius:50%; border: 0.5px solid #eeeeee; width:40px; height:40px;}
 .Poster blockquote { font-size: 13px; line-height: 21px; color:#888888; margin:10px 10px 10px 10px; padding: 8px 10px; border: 1px solid #9ee0f8; border-radius: 5px; box-shadow: #c0ebfb 0 0 5px 0;}
-.PosterParagraph { margin: 10px 5px 10px 6px; padding: 0; color: #666666; font-size: 14px; line-height: 23px; display: block; text-indent: 0;}
+.PosterParagraph { margin: 10px 5px 10px 6px; padding: 0; color: #333; font-size: 14px; line-height: 23px; display: block; text-indent: 0;}
 .PosterLink { color: #558bc4; text-decoration: none; cursor: pointer;}
 .PosterLink:hover { color: #0066dd; text-decoration: none;}
 .PosterTag { color: #00aaff; font-weight: bold;}
