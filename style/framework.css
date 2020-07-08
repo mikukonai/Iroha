@@ -213,12 +213,9 @@ body { font-family: Microsoft YaHei, "宋体", "Helvetica Neue", Helvetica, Aria
 .ListItemDate { font-size: 12px; line-height: inherit; text-align: right; margin: 0 0 0 auto; float: right; color: #888888; }
 .ListItemLink { color: #333333; text-decoration: none; cursor: pointer; }
 .ListItemLink:hover { color: #333333; text-decoration: underline; }
-.ListSortingOptionContainer { margin-top: 25px; padding-left: 20px; padding-right: 20px; line-height: 25px; font-size: 14px; color: #888888; text-align: center; }
-@media(min-width:651px){ /* Desktop */.ListSortingOption { padding-left: 40px; padding-right: 40px; }}
-.ListSortingOption { border: 1px solid #9dd9ff; color: #9dd9ff; cursor: pointer; }
-.ListSortingOptionLeft  { padding: 4px 7px 4px 10px; border-radius: 8px 0 0 8px; }
-.ListSortingOptionRight { padding: 4px 10px 4px 7px; border-radius: 0 8px 8px 0; border-left: none; }
-.ListSortingOptionSelected { background-color: #9dd9ff; color: #fff; }
+.ListSortingOptionContainer { width: fit-content; border-radius: 100px; background-color: #f0f0f0; color: #666; margin: 20px auto; border: 5px solid #f0f0f0; }
+.ListSortingOption { display: inline-block;font-size: 13px;padding: 5px 8px;border-radius: 100px;cursor: pointer; }
+.ListSortingOptionSelected { background-color: #fff; }
 .ListEnding { text-align: center; font-size: 12px; color: #cccccc; margin: 20px auto 20px auto; }
 
 /****************************************/
