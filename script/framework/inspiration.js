@@ -220,7 +220,7 @@ function LoadInspirations() {
         $('#InspirationContainer').html(html);
 
         SlideInOneByOne("Poster", 10, 800, 20, () => {
-            $('.InspirationEnding').html('底部文字');
+            $('.InspirationEnding').html('不可说者，皆应沉默');
             // console.table(posters);
         });
     }

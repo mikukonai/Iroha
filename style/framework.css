@@ -16,10 +16,10 @@ body { font-family: Microsoft YaHei, "宋体", "Helvetica Neue", Helvetica, Aria
         --HeaderHeight: 300px;
         --MainBorderRadius: 20px;
         --MainVerticalMargin: 40px;
-        --MainMaxWidth_PC: 750px;
-        --MainWidthPercent_PC: 55%;
+        --MainMaxWidth_PC: 800px;
+        --MainWidthPercent_PC: 65%;
         --NavbarHeight: 40px;
-        --MikumarkHorizontalPadding: 40px;
+        --MikumarkHorizontalPadding: 50px;
         --MikumarkBottomPadding: 30px;
     }
 }
@@ -86,7 +86,7 @@ body { font-family: Microsoft YaHei, "宋体", "Helvetica Neue", Helvetica, Aria
 .HeaderTitleCenter { position: relative; padding-top: calc(var(--HeaderHeight) - 100px); line-height:34px; height: 34px; font-size: 25px; color: #ffffff; letter-spacing: 2px; text-shadow: 2px 2px 10px #000000; text-align: center; vertical-align: middle; font-weight: normal;}
 .HeaderSubtitleCenter { line-height:40px; height: 40px; padding-bottom: 20px; font-size: 13px; color:rgba(255,255,255,1); letter-spacing: 2px; }
 .HeaderTitleLeft { position: relative; line-height:34px; height: 34px; color: #ffffff; letter-spacing: 2px; text-shadow: 2px 2px 5px #000000; vertical-align: middle; font-weight: bold; text-align: left;}
-.HeaderTitleLeft:after { content:" / Framework IROHA"; font-size: 19px; letter-spacing: 1px; color: rgba(255,255,255,0.9); text-shadow: 2px 2px 5px #000000; font-weight: 100;}
+.HeaderTitleLeft:after { content:" / Project Aurora"; font-size: 19px; letter-spacing: 1px; color: rgba(255,255,255,0.9); text-shadow: 2px 2px 5px #000000; font-weight: 100;}
 @media(min-width:651px){.HeaderTitleLeft { padding-top: calc(var(--HeaderHeight) - 70px); font-size: 28px; padding-left: 45px;}}
 @media(max-width:650px){.HeaderTitleLeft { padding-top: calc(var(--HeaderHeight) - 60px); font-size: 25px; padding-left: 30px;}}
 
@@ -96,7 +96,7 @@ body { font-family: Microsoft YaHei, "宋体", "Helvetica Neue", Helvetica, Aria
 .RightAside { position: fixed; height: 100%; z-index: 99999;}
 
 /* 按钮组件 */
-.Button { border: none; cursor: pointer; }
+.SideButton { border: none; cursor: pointer; }
 .Flat { background-color: #fff; }
 .Flat:hover { background-color: #eee; }
 .Flat:active { background-color: #ccc; }
@@ -153,12 +153,12 @@ body { font-family: Microsoft YaHei, "宋体", "Helvetica Neue", Helvetica, Aria
 @media(min-width:651px) { /* Desktop */.IndexItemPaddingBox { margin: 0; padding: 8px 50px 8px 50px; background: transparent; }}
 @media(max-width:650px) { /* Mobile */.IndexItemPaddingBox { margin: 0; padding:8px 25px 8px 25px; background: transparent; }}
 .IndexItemTitle { font-size: 17px; line-height: 30px; text-align: left; font-weight: bold; color: #566666; vertical-align: middle; text-shadow: none; }
-@media(min-width:651px) { /* Desktop */ .IndexItemTitle::before { content:attr(data-prefix); line-height: inherit; margin-right: 10px; padding-right: 10px; font-size: smaller; border-right: 5px solid rgba(0,0,0,0.1); color: #55bbdd; font-weight: bold; }}
+@media(min-width:651px) { /* Desktop */ .IndexItemTitle::before { content:attr(data-prefix); line-height: inherit; margin-right: 10px; padding-right: 10px; font-size: smaller; border-right: 5px solid rgba(0,0,0,0.1); color: #1ea0f0; font-weight: bold; }}
 @media(max-width:650px) { /* Mobile */ .IndexItemTitle::before { display: none; }}
 .IndexItemTitleLink { letter-spacing: 1px; color:#555555; text-decoration:none; cursor: pointer; }
 .IndexItemTitleLink:hover { color:#aaaaaa; text-decoration:none; }
 .IndexItemTitleTag { display: inline-block; font-weight: normal; background-color: none; color: #93e76c; border: 1px solid #93e76c; border-radius: 5px; font-size: 9px; line-height: 15px; padding: 1px 3px; margin-left: 5px; vertical-align: middle; }
-.IndexItemSummary { color: #bbb; text-align: left; padding: 7px 0 3px 0; font-size: 13px; font-weight: lighter; display: block; line-height: 23px; overflow-x: auto; }
+.IndexItemSummary { color: #bbb; text-align: left; padding: 7px 0 3px 0; font-size: 13px; display: block; line-height: 23px; overflow-x: auto; }
 .IndexItemTable { display: table; border-collapse: separate; border: none; border-spacing: 0; width: 100%; }
 .IndexItemTableLeft { padding-right: 10px; }
 .IndexItemTableRight { width: 50px; }
@@ -189,9 +189,9 @@ body { font-family: Microsoft YaHei, "宋体", "Helvetica Neue", Helvetica, Aria
 /* Poster 样式 */
 .Poster { margin: 0; padding: 10px 10px 10px 10px; border-bottom: 1px solid #e0e0e0; border-radius: 0; color: #666666; background-color: #ffffff; text-align: left; opacity:0.0;}
 @media(min-width:651px){ /* Desktop */.Poster { padding: 20px 40px 20px 40px;}}
-.PosterTitle { display: block; width: fit-content; width: -webkit-fit-content; width: -moz-fit-content; margin:3px 20px 0px 60px; padding:0; border-bottom: 1px solid #dddddd; color:#222; line-height: 27px; font-size:17px; letter-spacing: 1px; font-weight: bold;}
+.PosterTitle { display: block; width: fit-content; margin:3px 20px 0px 60px; padding:0; border-bottom: 1px solid #dddddd; color:#000; line-height: 27px; font-size:17px; letter-spacing: 1px;}
 .PosterSubtitle { display: block; text-align: left; margin:0px 20px 8px 60px; padding:0; line-height: 22px; color:#aaaaaa; font-size:13px;}
-.PosterAvater { float:left; position:relative; top:6px; left:6px; margin:0; padding:0; border-radius:50%; border: 0.5px solid #eeeeee; width:40px; height:40px;}
+.PosterAvater { float:left; position:relative; top:7px; left:6px; margin:0; padding:0; border-radius:50%; border: 0.5px solid #eeeeee; width:40px; height:40px;}
 .Poster blockquote { font-size: 13px; line-height: 21px; color:#888888; margin:10px 10px 10px 10px; padding: 8px 10px; border: 1px solid #9ee0f8; border-radius: 5px; box-shadow: #c0ebfb 0 0 5px 0;}
 .PosterParagraph { margin: 10px 5px 10px 6px; padding: 0; color: #333; font-size: 14px; line-height: 23px; display: block; text-indent: 0;}
 .PosterLink { color: #558bc4; text-decoration: none; cursor: pointer;}
@@ -215,7 +215,7 @@ body { font-family: Microsoft YaHei, "宋体", "Helvetica Neue", Helvetica, Aria
 .ListItemLink:hover { color: #333333; text-decoration: underline; }
 .ListSortingOptionContainer { width: fit-content; border-radius: 100px; background-color: #f0f0f0; color: #666; margin: 20px auto; border: 5px solid #f0f0f0; }
 .ListSortingOption { display: inline-block;font-size: 13px;padding: 5px 8px;border-radius: 100px;cursor: pointer; }
-.ListSortingOptionSelected { background-color: #fff; }
+.ListSortingOptionSelected { background-color: #fff; box-shadow: 0 1px 2px 0 rgba(60,60,60,0.1), 0 1px 3px 1px rgba(60,60,60,0.1); }
 .ListEnding { text-align: center; font-size: 12px; color: #cccccc; margin: 20px auto 20px auto; }
 
 /****************************************/
@@ -230,7 +230,7 @@ body { font-family: Microsoft YaHei, "宋体", "Helvetica Neue", Helvetica, Aria
     /* 标题：前部伪元素 */
     .Title:before { content: ""; border-right: 20px solid rgba(255,255,255,0.4); margin-right: 25px;}
     /* 标题：后部伪元素 */
-    .Title:after { content:" / Framework IROHA"; font-size: 16px; color: rgba(255,255,255,0.8); text-shadow: none; font-weight: normal;}
+    .Title:after { content:" / Project Aurora"; font-size: 16px; color: rgba(255,255,255,0.8); text-shadow: none; font-weight: normal;}
 }
 @media(max-width:650px){
     .Title { width: auto; padding-top: calc(var(--HeaderHeight) - 70px); text-align: center; font-size: 24px;}
@@ -304,21 +304,57 @@ body { font-family: Microsoft YaHei, "宋体", "Helvetica Neue", Helvetica, Aria
 /*  关 于 页 样 式 */
 /****************************************/
 
-.AboutTdLeft { text-align: right; font-weight: bold; padding-right:5px;}
-.AboutTdRight { text-align: left; padding-left:5px;}
-.AboutEdition { font-size: 14px; line-height: 25px; text-align: left; margin: 20px 50px 20px 50px; font-weight: normal;}
-.AboutEdition .AboutVernum { text-align: center; font-weight: bold; margin-top: 10px; margin-bottom: 10px; line-height: 18px;}
-.AboutVernum { margin-left: auto; margin-right: auto; width: fit-content; width: -webkit-fit-content; width: -moz-fit-content; border-bottom: 2px solid #cceeff;}
-.AboutChangelog { color: #666666; text-align: center; line-height: 25px; margin-top: 10px; margin-bottom: 30px;}
-.AboutLink { text-decoration: none; color: #222222; border-bottom: 1px dotted #222; cursor: pointer;}
-.AboutLink:hover { color: #0066dd; text-decoration: none; border-bottom: 1px solid #0066dd;}
-.AboutTitle{ text-align: center; font-size: 15px; color: #66bbdd; margin: 20px 0 20px 0; padding: 10px 0 10px 0; background: linear-gradient(90deg, #ffffff, #f0faff, #ffffff);}
-.AboutSubtitle { font-size: 10px; font-weight: normal; color: #ccc; padding-top: 5px;}
-.AboutContent { font-size: 14px; line-height: 25px; text-align: center; margin: 5px 0 5px 0; padding: 10px 10px 10px 10px; font-weight: normal;}
-.AboutBlogrollTable { width: 100%; font-size: 14px; color:#888888; table-layout:fixed;}
-.AboutBlogrollTable td { text-align: center; line-height: 22px; height: 36px;}
-.AboutBlogrollTable a { font-size: 13px; text-decoration: none; color:#111111;}
-.AboutBlogrollTable a:hover { color:#ff6893; border-bottom: 1px solid #ff6893;}
-.AboutBlogrollTable td:first-child { padding-right: 15px; text-align: right;}
-.AboutBlogrollTable td:last-child { padding-left: 15px; text-align: left;}
-.AboutSeparator { color: #bababa; margin: 0 10px 0 10px;}
+
+
+/****************************************/
+/*  公 用 样 式 */
+/****************************************/
+
+.SectionHeader { text-align: center; font-size: 17px; letter-spacing: 2px; color: #1ea0f0; margin: 30px 0; padding: 12px 0; background: linear-gradient(90deg, #ffffff, #eff9ff, #ffffff); }
+.SectionSubHeader { font-size: 15px; text-align: center; font-weight: bold; margin: 30px auto 10px auto; width: fit-content; border-bottom: 2px solid #cceeff; }
+.SectionHeaderComment { font-size: 13px;  letter-spacing: 0px; font-weight: normal; color: #aaa; padding-top: 5px; font-variant-caps: small-caps;}
+.SectionBody { font-size: 14px; line-height: 25px; text-align: center; margin: 10px 0; color: #333; font-weight: normal; }
+.SectionBody a { text-decoration: none; color: #222222; }
+.Link { text-decoration: none; color: #222222; border-bottom: 1px dotted #222; cursor: pointer; }
+.Link:hover { color: #0066dd; text-decoration: none; border-bottom: 1px solid #0066dd; }
+
+/* 通用表格矩阵 */
+.Matrix { width: 100%; table-layout:fixed;}
+.Matrix td { text-align: center; padding: 3px 0; }
+.Matrix td:first-child { padding-right: 10px; text-align: right;}
+.Matrix td:last-child { padding-left: 10px; text-align: left;}
+
+/* 斜线分隔符 */
+.Separator { color: #bababa; margin: 0 10px 0 10px;}
+
+.Button {
+    color: #333333;
+    display: inline-block;
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 100px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.Button:hover  { color: #1ea0f0; background-color: #eff9ff; }
+
+.Button_Gray   { color: #888888; }
+.Button_Red    { color: #ff8080; }
+.Button_Orange { color: #ffa600; }
+.Button_Yellow { color: #ebc000; }
+.Button_Green  { color: #27b300; }
+.Button_Cyan   { color: #1ea0f0; }
+.Button_Blue   { color: #7a80ff; }
+.Button_Violet { color: #c567ff; }
+
+.Button_Gray:hover   { color: #888888; background-color: #f2f2f2; /*border: 1px solid #aaaaaa;*/ }
+.Button_Red:hover    { color: #ff8080; background-color: #fff0f0; /*border: 1px solid #ff8080;*/ }
+.Button_Orange:hover { color: #ffa600; background-color: #fff5e2; /*border: 1px solid #ffa600;*/ }
+.Button_Yellow:hover { color: #ebc000; background-color: #fffec1; /*border: 1px solid #ebc000;*/ }
+.Button_Green:hover  { color: #27b300; background-color: #e4fddd; /*border: 1px solid #27b300;*/ }
+.Button_Cyan:hover   { color: #1ea0f0; background-color: #eff9ff; /*border: 1px solid #00a6e2;*/ }
+.Button_Blue:hover   { color: #7a80ff; background-color: #f0f1ff; /*border: 1px solid #7a80ff;*/ }
+.Button_Violet:hover { color: #c567ff; background-color: #faf1ff; /*border: 1px solid #c567ff;*/ }
+
+

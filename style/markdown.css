@@ -66,7 +66,7 @@ i, cite, em, var, address, dfn { font-style: italic;}
         font-size: var(--p_font_size);
         line-height: var(--p_line_height);
         word-wrap: break-word;
-        overflow-x: auto;
+        /* overflow-x: auto; */
     }
 }
 @media(max-width:650px) { /* Mobile */
@@ -77,7 +77,7 @@ i, cite, em, var, address, dfn { font-style: italic;}
         font-size: var(--p_font_size);
         line-height: var(--p_line_height);
         word-wrap: break-word;
-        overflow-x: auto;
+        /* overflow-x: auto; */
     }
 }
 
@@ -99,8 +99,8 @@ i, cite, em, var, address, dfn { font-style: italic;}
     }
     /* 标题样式（可直接改动） */
     h1.MikumarkTitle {font-size:20px;line-height:42px;font-weight:bold;
-        color: #66bbdd;
-        background: linear-gradient(90deg, #f0faff, #fff);
+        color: #1ea0f0;
+        background: linear-gradient(90deg, #eff9ff, #fff);
         left: calc(0px - var(--MikumarkHorizontalPadding));
         position: relative;
         padding-left: var(--MikumarkHorizontalPadding);
@@ -127,8 +127,8 @@ i, cite, em, var, address, dfn { font-style: italic;}
     }
     /* 标题样式（可直接改动） */
     h1.MikumarkTitle {font-size:20px;line-height:42px;font-weight:bold;
-        color: #66bbdd;
-        background: linear-gradient(90deg, #f0faff, #fff);
+        color: #1ea0f0;
+        background: linear-gradient(90deg, #eff9ff, #fff);
         left: calc(0px - var(--MikumarkHorizontalPadding));
         position: relative;
         padding-left: var(--MikumarkHorizontalPadding);
@@ -234,10 +234,11 @@ i, cite, em, var, address, dfn { font-style: italic;}
         margin: var(--quote_p_margin) 0;
         font-size: inherit;
         line-height: inherit;
-        overflow-x: auto;
+        /* overflow-x: auto; */
     }
     blockquote.MikumarkBlockquote ul.MikumarkList,
     blockquote.MikumarkBlockquote ol.MikumarkList {
+        margin: var(--quote_p_margin) 0;
         font-size: inherit;
         line-height: inherit;
     }
@@ -258,10 +259,11 @@ i, cite, em, var, address, dfn { font-style: italic;}
         margin: var(--quote_p_margin) 0;
         font-size: inherit;
         line-height: inherit;
-        overflow-x: auto;
+        /* overflow-x: auto; */
     }
     blockquote.MikumarkBlockquote ul.MikumarkList,
     blockquote.MikumarkBlockquote ol.MikumarkList {
+        margin: var(--quote_p_margin) 0;
         font-size: inherit;
         line-height: inherit;
     }
@@ -298,7 +300,8 @@ i, cite, em, var, address, dfn { font-style: italic;}
         padding-left: 2em;
         text-indent: 0;
         font-size: var(--p_font_size);
-        margin: calc(var(--p_margin_bottom) / 2) 0;
+        /* margin: calc(var(--p_margin_bottom) / 2) 0; */
+        margin: var(--p_margin_bottom) 0;
         display: block;
         line-height: var(--p_line_height);
         font-weight: inherit;
@@ -318,7 +321,8 @@ i, cite, em, var, address, dfn { font-style: italic;}
         padding-left: 2em;
         text-indent: 0;
         font-size: var(--p_font_size);
-        margin: calc(var(--p_margin_bottom) / 2) 0;
+        /* margin: calc(var(--p_margin_bottom) / 2) 0; */
+        margin: var(--p_margin_bottom) 0;
         display: block;
         line-height: var(--p_line_height);
         font-weight: inherit;
@@ -453,6 +457,10 @@ i, cite, em, var, address, dfn { font-style: italic;}
     }
 }
 
+/********** 框架样式 **********/
+
+.MikumarkIframe { width: 100%; border: none; }
+
 /********** 按钮样式 **********/
 
 .MikumarkButton {
@@ -482,6 +490,17 @@ i, cite, em, var, address, dfn { font-style: italic;}
 .MikumarkButtonYellow:hover { color: #d6b600; background-color: #fff2ac; border: 1px solid #fff2ac; }
 .MikumarkButtonYellow:active { color: #ffffff; background-color: #ffd900; border: 1px solid #ffd900; }
 .MikumarkButtonYellow:disabled { color: #888888; background-color: #eeeeee; border: 1px solid #eeeeee; }
+
+/********** summary/details样式 **********/
+
+summary {
+    margin: var(--p_margin_bottom) 0;
+    color: #1ea0f0;
+    font-size: var(--p_font_size);
+    font-weight: bold;
+    line-height: var(--p_line_height);
+    cursor: pointer;
+}
 
 /********** 代码高亮样式（暂不用） **********/
 

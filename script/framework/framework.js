@@ -101,7 +101,7 @@ function SPA_Render(pathString, callback) {
     // 其他 TODO 待开发，注意有些格局的初始化代码位于其他模块中，是动态加载动态执行的。这些模块之间的关系，后续需要妥善规划。
     else {
         // 页面标题
-        $("title").html("Iroha");
+        $("title").html("Project Aurora");
         // 控制导航栏和顶栏的显示
         $(".StickyTitleContainer").hide();
         $("#MainNavbar").show();
@@ -242,7 +242,7 @@ function SlideInOneByOne(
 
 // 布局侧栏位置
 function ArrangeSideButtonLayout() {
-    let buttonWidth = $(".Button").width();
+    let buttonWidth = $(".SideButton").width();
     // 控制左右侧栏的水平位置
     if(GetMediaType() === "Desktop") {
         let MainRightMargin = parseInt($(".Main").css("margin-right").match(/^\d+/gi)[0]);

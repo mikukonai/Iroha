@@ -4,70 +4,174 @@
 // Copyright © 2016-2019 Mikukonai
 
 // 载入并渲染列表
-function LoadList(articleType) {
+function LoadList(pageId) {
 
     // 标题→文件名
     function TitleToFilename(title) {
         return title.replace(/\s+/gi, "-");
     }
 
-    // 解析列表文本
-    // 列表格式：
-    // ; 分号开头的行是注释
-    // ::类别名称  若干空格  颜色代码
-    // ## 分类名称 | 分类别名
-    // 文章标题 | 类别 | 日期 | 标签,...
-    // *置顶文章标题 | ...
-
-    function ParseArticleList(articleList) {
-        let items = new Array();
-        let typeColorMapping = new Object();
-        let lines = articleList.split(/\n+/gi);
-        let currentCategory = "";
-        for(let line of lines) {
-            line = line.trim();
-            // 跳过空行或者注释行
-            if(line.length <= 0 || /^\;/gi.test(line)) {
-                continue;
-            }
-            // 类别颜色定义
-            else if(/^\:\:/gi.test(line)) {
-                let fields = line.replace(/^\:\:/gi, "").split(/\s+/gi);
-                typeColorMapping[fields[0]] = fields[1];
-            }
-            // 表示文章分类的行
-            else if(/^\#\#\s+/.test(line)) {
-                currentCategory = line.replace(/^\#\#\s+/gi, "").trim();
-            }
-            // 文章信息行
-            else {
-                let fields = line.split('|');
-                let title = fields[0] ? fields[0].trim() : "";
-                let type  = fields[1] ? fields[1].trim() : "";
-                let date  = fields[2] ? fields[2].trim() : "";
-                let tags  = fields[3] ? fields[3].trim() : "";
-                let isPinned = /^\*/gi.test(title);
-                items.push({
-                    "title": title.replace(/^\*/gi, ""),
-                    "type": type,
-                    "category": currentCategory,
-                    "date": date,
-                    "tags": (tags.trim().length === 0) ? [] : tags.split(","),
-                    "isPinned": isPinned
-                });
+    // 渲染时间线
+    function RenderTimeline(articleList) {
+        let articles = new Object();
+        for(let i = 0; i < articleList.length; i++) {
+            let dates = new Array();
+            dates.push(articleList[i].date);
+            dates = dates.concat(articleList[i].updates);
+            for(let j = 0; j < dates.length; j++) {
+                let date = dates[j];
+                if(!articles[date]) {
+                    articles[date] = new Array();
+                }
+                articles[date].push(articleList[i]);
             }
         }
-        let ListObject = {
-            "items": items,
-            "typeColorMapping": typeColorMapping
-        };
 
-        return ListObject;
+        $("#WeekCountContainer").append(`<td class="WeekCount"></td>`);
+        $("#DaysContainer").append(`<td>
+            <div class="Weektag">月</div>
+            <div class="Weektag">火</div>
+            <div class="Weektag">水</div>
+            <div class="Weektag">木</div>
+            <div class="Weektag">金</div>
+            <div class="Weektag">土</div>
+            <div class="Weektag">日</div>
+        </td>`);
+
+        let date = new Date();
+        let currentMonth = date.getMonth() + 1;
+
+        let weekDayCount = 0;
+        let weekCount = 0;
+        let newYearDayWeek = new Date(date.getFullYear(), 0, 1).getDay(); // 当年元旦是星期几
+        newYearDayWeek = (newYearDayWeek === 0) ? 7 : newYearDayWeek;
+        const MONTH_DAYS = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+        let isLeapYear = false;
+        let fullyear = date.getFullYear();
+        if(fullyear % 100 === 0) {
+            if(fullyear % 400 === 0) isLeapYear = true;
+            else isLeapYear = false;
+        }
+        else {
+            if(fullyear % 4 === 0) isLeapYear = true;
+            else isLeapYear = false;
+        }
+        let weekRowStr = `<td>`;
+
+        // 处理1月1日之前的空格（TODO 每年第一周的处理逻辑应对标ISO8601）
+        newYearDayWeek--;
+        while(newYearDayWeek > 0) {
+            weekRowStr += `<div class="Day Blank"></div>`;
+            weekDayCount++;
+            newYearDayWeek--;
+        }
+
+        for(let month = 1; month <= currentMonth; month++) { // 注意getMonth()返回的月份数字从0开始
+            monthDays = MONTH_DAYS[month];
+            if(month === 2 && isLeapYear === true) monthDays++;
+            for(let day = 1; day <= monthDays; day++) {
+                let firstDay = (day === 1) ? " Firstday" : "";
+                let monthString = ("00" + String(month)).slice(-2);
+                let dayString = ("00" + String(day)).slice(-2);
+                let dateString = `${date.getFullYear()}-${monthString}-${dayString}`;
+    
+                let level = "";
+                if(articles[dateString]) {
+                    let articleNumber = articles[dateString].length;
+                    if(articleNumber === 1) { level = " L1"; }
+                    else if(articleNumber === 2) { level = " L2"; }
+                    else if(articleNumber === 3) { level = " L3"; }
+                    else if(articleNumber  >= 4) { level = " L4"; }
+                }
+                else {
+                    level = "";
+                }
+                weekRowStr += `<div class="Day${firstDay}${level}" id="Article-${dateString}" data-date="${dateString}" title="${dateString}"></div>`;
+                weekDayCount++;
+                if(weekDayCount % 7 === 0) {
+                    weekCount++;
+                    weekRowStr += `</td>`;
+                    $("#DaysContainer").append(weekRowStr);
+                    $("#WeekCountContainer").append(`<td class="WeekCount">${weekCount}</td>`);
+                    weekRowStr = `<td>`;
+                }
+                else if(day === monthDays && month === currentMonth) {
+                    weekCount++;
+                    let blanks = 7 - weekDayCount % 7;
+                    if(blanks < 7) {
+                        for(let i = 0; i < blanks; i++) {
+                            weekRowStr += `<div class="Day Blank"></div>`;
+                        }
+                    }
+                    weekRowStr += `</td>`;
+                    $("#DaysContainer").append(weekRowStr);
+                    $("#WeekCountContainer").append(`<td class="WeekCount">${weekCount}</td>`);
+                    weekRowStr = `<td>`;
+                }
+            }
+        }
+
+        // 转到某个文章的位置
+        function TurnToArticle(title) {
+            let targetTop = window.pageYOffset + $(`div[data-title='${title}']`)[0].getBoundingClientRect().top;
+            $('html, body').animate({ scrollTop: targetTop-40 }, 200, 'easeOutExpo'); // 照顾顶部sticky导航栏的40px高度
+        }
+    
+        $(".Day").each((i, e) => {
+            $(e).click(() => {
+                let date = $(e).attr("data-date");
+                if(date in articles) {
+                    RenderArticleList(articles[date]);
+                    TurnToArticle(articles[date][0].title);
+                }
+            });
+        });
     }
 
-
     // 列表渲染为HTML
-    function RenderArticleList(ListObject, listingMode) {
+    function RenderArticleList(articleList, listingMode) {
+
+        // 标题→文件名
+        function TitleToFilename(title) {
+            return title.replace(/\s+/gi, "-");
+        }
+
+        let HtmlBuffer = new Array();
+        for(let i = 0; i < articleList.length; i++) {
+            let articleInfo = articleList[i];
+            let title = articleInfo.title;
+            let date = articleInfo.date;
+            let authors = articleInfo.authors;
+            let category = articleInfo.category;
+            let copyright = articleInfo.copyright;
+            let tags = articleInfo.tags;
+            let cover = articleInfo.cover;
+
+            let tagString = "";
+            for(let j = 0; j < tags.length; j++) {
+                tagString += `<span class="ArticleTag">${tags[j]}</span>`;
+            }
+            if(tags.length > 0) tagString += " / ";
+
+            let coverHtml = (!cover || cover.length <= 0) ? "" : `<img class="ArticleCover" src="${cover}">`;
+
+            let html = `
+<div class="ArticleItem enter" data-title="${title}">
+    ${coverHtml}
+    <div class="ArticleTitle"><span class="ArticleTitleLink SPA_TRIGGER" data-target="${pageId}/${TitleToFilename(title)}">${title}</span></div>
+    <div class="ArticleInfo">${tagString}${category} / ${date}</div>
+</div>`;
+
+            HtmlBuffer.push(html);
+        }
+
+        document.getElementById('ListContainer').innerHTML = HtmlBuffer.join("");
+
+        // SlideInOneByOne("enter", 10, 1000, 5);
+
+        console.log(`[Iroha-SPA] 列表渲染完毕，计 ${articleList.length} 项`);
+
+        /*
         // 组装简单列表
         function RenderList(items) {
             // const FillZero = (num) => { return ('000000' + num.toString()).substr(-2); };
@@ -75,9 +179,9 @@ function LoadList(articleType) {
             for(let i = 0; i < items.length; i++) {
                 let item = items[i];
                 // 条目颜色
-                let itemColor = ListObject.typeColorMapping[item.type] || "#cdcdcd";
+                let itemColor = listObject.typeColorMapping[item.type] || "#cdcdcd";
                 // 组装链接
-                let itemLink = `${articleType}/${TitleToFilename(item.title)}`;
+                let itemLink = `${pageId}/${TitleToFilename(item.title)}`;
                 // 组装标签
                 let tagsHtml = "";
                 for(let j = 0; j < item.tags.length; j++) {
@@ -92,12 +196,12 @@ function LoadList(articleType) {
         if(listingMode === "category") {
             // 对列表进行归类
             let catLists = new Object();
-            for(let i = 0; i < ListObject.items.length; i++) {
-                let category = ListObject.items[i].category;
+            for(let i = 0; i < listObject.items.length; i++) {
+                let category = listObject.items[i].category;
                 if(!(category in catLists)) {
                     catLists[category] = new Array();
                 }
-                catLists[category].push(ListObject.items[i]);
+                catLists[category].push(listObject.items[i]);
             }
 
             // 对每个分类进行拼装HTML
@@ -121,7 +225,7 @@ function LoadList(articleType) {
 
         else {
             // 对日期进行排序
-            ListObject.items.sort((a, b) => {
+            listObject.items.sort((a, b) => {
                 if(a.isPinned) { return -1; }
                 else if(b.isPinned) { return 1; }
                 else {
@@ -137,13 +241,14 @@ function LoadList(articleType) {
                     }
                 }
             });
-            document.getElementById('ListContainer').innerHTML = `<div class="ListCategoryBlock">${RenderList(ListObject.items)}</div>`;
+            document.getElementById('ListContainer').innerHTML = `<div class="ListCategoryBlock">${RenderList(listObject.items)}</div>`;
         }
 
         // 淡入动画
         SlideInOneByOne("enter", 10, 1000, 5);
 
-        console.log(`[Iroha-SPA] 列表渲染完毕，计 ${ListObject.items.length} 项`);
+        console.log(`[Iroha-SPA] 列表渲染完毕，计 ${listObject.items.length} 项`);
+        */
     }
 
     /////////////////////////////
@@ -164,14 +269,18 @@ function LoadList(articleType) {
     $('.ListEnding').html('正在读取，请稍等…');
 
     let xhr = new XMLHttpRequest();
-    xhr.open("GET", `markdown/${articleType}/-articles.md`);
+    xhr.open("GET", `markdown/${pageId}/-articles.json`);
     xhr.onreadystatechange = () => {
         if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
             $("#Progressbar").animate({width: `100%`});
             $("#Progressbar").fadeOut();
-            let CONTENTS = ParseArticleList(xhr.responseText);
 
-            RenderArticleList(CONTENTS, SORTING_OPTION);
+            // 绘制文章列表
+            let contents = JSON.parse(xhr.responseText); // ParseArticleList(xhr.responseText);
+            RenderArticleList(contents, SORTING_OPTION);
+
+            // 绘制时间线
+            RenderTimeline(contents);
 
             // 排序选项按钮
             $(`.ListSortingOption[data-sorting-option=${SORTING_OPTION}]`).addClass('ListSortingOptionSelected');
@@ -180,7 +289,7 @@ function LoadList(articleType) {
                     let sortingOption = $(e).attr("data-sorting-option");
                     $(".ListSortingOption").removeClass("ListSortingOptionSelected");
                     $(e).addClass("ListSortingOptionSelected");
-                    RenderArticleList(CONTENTS, sortingOption);
+                    RenderArticleList(contents, sortingOption);
                     SORTING_OPTION = sortingOption;
                 });
             });

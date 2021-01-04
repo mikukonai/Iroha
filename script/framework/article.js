@@ -134,7 +134,7 @@ function LoadArticle(PageID, ArticleID) {
     // 渲染文章正文
     function Render(mikumark) {
         // 标题
-        document.getElementsByTagName("title")[0].innerHTML = `${mikumark.title} / Framework IROHA`;
+        document.getElementsByTagName("title")[0].innerHTML = `${mikumark.title} / Project Aurora`;
         $('#StickyTitle').html(mikumark.title);
         $('#Title').html(mikumark.title);
 

@@ -31,7 +31,7 @@
 <!--左边栏-->
 <aside class="LeftAside">
     <!--左上：后退按钮-->
-    <button id="BackButton" class="Button Raised Round" onclick="history.go(-1);" style="display: none;">
+    <button id="BackButton" class="SideButton Raised Round" onclick="history.go(-1);" style="display: none;">
         <img src="./image/icons/back-gray.png" style="height:16px;width:16px;margin-bottom: 2px; vertical-align: middle;">
     </button>
 </aside>
@@ -51,7 +51,7 @@
         <div id="MenuContentContainer" class="MenuContentContainer"></div>
     </div>
     <!--右下：回到顶部按钮-->
-    <button id="GoTopButton" class="Button Raised Round" style="position: absolute; bottom: 80px; right: 0;" onclick="$('html, body').animate({scrollTop:0},'fast');">
+    <button id="GoTopButton" class="SideButton Raised Round" style="position: absolute; bottom: 80px; right: 0;" onclick="$('html, body').animate({scrollTop:0},'fast');">
         <img src="./image/icons/gotop.png"  style="height:19px;width:17px; vertical-align: middle;">
     </button>
 </aside>
@@ -113,42 +113,132 @@
 
 <!--文章列表模板-->
 <template id="blog">
-    <div class="ListSortingOptionContainer">
-        <span class="ListSortingOption ListSortingOptionLeft" data-sorting-option="date-dec">日期降序</span><span class="ListSortingOption ListSortingOptionRight" data-sorting-option="category">分类归类</span>
+
+<style>
+.TimelineContainer { margin: 25px 0; text-align: center; overflow-x: auto; overflow-y: hidden; }
+.Timeline { margin: 0 auto; border-collapse: collapse; border-spacing: 0px; }
+.Timeline td { padding: 0; }
+.Day { box-sizing: border-box; margin: 3px 1.5px; width: 12px; height: 12px; background-color: #eee; border-radius: 2px; }
+
+.Blank, .Blank:hover { background-color: transparent; }
+.Firstday { background-color: #ddd; }
+
+.L1 { background-color: #c6e48b; cursor: pointer; }
+.L2 { background-color: #7bc96f; cursor: pointer; }
+.L3 { background-color: #239a3b; cursor: pointer; }
+.L4 { background-color: #196127; cursor: pointer; }
+.L1:hover { transform: scale(1.2); }
+.L2:hover { transform: scale(1.2); }
+.L3:hover { transform: scale(1.2); }
+.L4:hover { transform: scale(1.2); }
+
+.Weektag { margin: 2px 3px; height: 13px; font-size: 10px; text-align: right; color: #ccc; transform: scale(0.8); }
+.WeekCount { margin: 2px; width: 12px; line-height: 12px; font-size: 10px; text-align: center; color: #ddd; transform: scale(0.7); }
+
+.CategoryIcon {
+    font-family: 'consolas', monospace;
+    display:inline-block;
+    width:30px; height:30px;
+    line-height: 30px;
+    background-color:#ccc;
+    color:#fff;
+    text-align:center;
+    font-size:18px;
+    font-weight:bold;
+    margin: 0px 1px;
+    border-radius: 3px;
+}
+</style>
+
+    <div class="TimelineContainer">
+        <table class="Timeline">
+            <tr id="WeekCountContainer"></tr>
+            <tr id="DaysContainer"></tr>
+        </table>
     </div>
-    <div id="ListContainer"></div>
-    <div class="ListEnding">底部文字</div>
+
+<style>
+.ArticleItem {
+    margin: 15px 0;
+}
+.ArticleItem::after {
+    display: block;
+    content: "";
+    height: 1px;
+    background: linear-gradient(90deg, #fff, #eee, #fff);
+    margin-top: 15px;
+}
+.ArticleTitle {
+    margin-bottom: 3px;
+    text-align: center;
+}
+.ArticleTitleLink {
+    color: #333;
+    font-size: 16px;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+.ArticleTitleLink:hover {
+    color: #1ea0f0;
+    /* text-decoration: underline; */
+}
+.ArticleInfo {
+    color: #ccc;
+    font-size: 10px;
+    text-align: center;
+}
+.ArticleTag {
+    line-height: inherit;
+    background-color: #ffeaf0;
+    color: #ff88a9;
+    border: none;
+    border-radius: 10px;
+    padding: 1px 4px 1px 4px;
+    margin-left: 5px;
+}
+.ArticleCover {
+    display: block;
+    margin: 10px auto;
+    border-radius: 10px;
+    width: 250px;
+    filter: opacity(0.9);
+}
+</style>
+
+    <div class="SectionHeader">博客文章<div class="SectionHeaderComment">Articles</div></div>
+
+    <div class="ListSortingOptionContainer">
+        <span class="ListSortingOption" data-sorting-option="date-dec">时间顺序</span><span class="ListSortingOption" data-sorting-option="category">默认排序</span>
+    </div>
+
+    <div class="SectionBody" id="ListContainer"></div>
+
+    <div class="ListEnding">封面出处：《凉宫春日的忧郁》</div>
+
 </template>
-
-
 
 
 <!--"关于"模板-->
 <template id="about">
-
-    <div class="AboutTitle" id="blogroll" style="color:#ff6893; background: linear-gradient(90deg, #ffffff, #fff3f3, #ffffff);">
-        友 情 链 接<div class="AboutSubtitle">以添加时间为序 / 欢迎交换友情链接</div>
+    <div class="SectionHeader" id="blogroll">友情链接<div class="SectionHeaderComment">以添加时间为序 / 欢迎交换友情链接</div></div>
+    <div class="SectionBody">
+        <table class="Matrix">
+            <tr>
+                <td><a class="Button" target="_blank" href="https://mikukonai.com/">PA</a></td>
+                <td><a class="Button" target="_blank" href="https://mikukonai.com/BD4SUR">BD4SUR</a></td>
+                <td><a class="Button" target="_blank" href="https://mikukonai.com/Aqua">Aqua</a></td>
+            </tr>
+        </table>
     </div>
-    <table class="AboutBlogrollTable">
-        <tr>
-            <td><a target="_blank" href="https://mikukonai.com/">友链1</a></td>
-            <td><a target="_blank" href="https://mikukonai.com/">友链2</a></td>
-            <td><a target="_blank" href="https://mikukonai.com/">友链3</a></td>
-        </tr>
-    </table>
 
-    <div class="AboutTitle" id="copyright">权 利 声 明</div>
+    <div class="SectionHeader" id="aboutSite">关于</div>
+    <div class="SectionSubHeader">功能</div>
+    <div class="SectionBody">静态博客前端框架</div>
 
-    <div class="AboutContent">版权所有 &copy; 2016-<span class="CopyrightYear"></span> Mikukonai<br>保留所有权利</div>
-    <div class="AboutContent">采用<a class="AboutLink" href="https://github.com/mikukonai/Iroha/blob/master/LICENSE">MIT协议</a>授权</div>
-    <div class="AboutContent"><b><a class="AboutLink" href="https://github.com/mikukonai/Iroha/graphs/contributors">贡献者名单</a></b></div>
-
-    <div class="AboutTitle" id="changelog">版 本 记 录</div>
-
-    <div class="AboutEdition">
-        <p class="AboutVernum">V4.0<span style="color:#888888;padding-left: 15px;">2020.02.14</span></p>
-        <p class="AboutChangelog">抽取出框架</p>
-    </div>
+    <div class="SectionHeader" id="copyright">权利声明</div>
+    <div class="SectionBody">版权所有 &copy; 2016-<span class="CopyrightYear"></span> Mikukonai</div>
+    <div class="SectionBody" style="font-size: smaller;">采用<a class="Link" href="https://github.com/mikukonai/Iroha/blob/master/LICENSE">MIT协议</a>授权</div>
+    <div class="SectionBody" style="font-size: smaller;"><b><a class="Link" href="https://github.com/mikukonai/Iroha/graphs/contributors">贡献者名单</a></b></div>
 
 </template>
 
