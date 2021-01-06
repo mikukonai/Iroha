@@ -9,8 +9,6 @@
 //
 ////////////////////////////////////////////////////////
 
-// 默认封面图片
-const DEFAULT_COVER_CSS = `url(./image/cover/default.jpg)`;
 // 默认灵感头像
 const DEFAULT_POSTER_AVATAR = `./image/avatar.jpg`;
 // 监听器节流延时（无需纳入配置项）
@@ -92,9 +90,8 @@ function SPA_Render(pathString, callback) {
         }
         // 创建菜单内容的锚点"ContentsContainer"
         $("#MenuContentContainer").html(`<div id="ContentsContainer"></div>`);
-        // 标题和页面内容（框架）
+        // 页面内容（框架）
         $('.SPA_MAIN_CONTAINER').html($(`template#${PageID}-article`).html());
-        $('.SPA_TITLE_CONTAINER').html($(`template#${PageID}-article-title`).html());
         LoadArticle(PageID, ArticleID);
     }
 
@@ -108,13 +105,8 @@ function SPA_Render(pathString, callback) {
         // 不显示返回和菜单按钮
         $("#BackButton").hide();
         $(".MenuContainer").hide();
-        // 标题和页面内容（框架）
+        // 页面内容（框架）
         $('.SPA_MAIN_CONTAINER').html($(`template#${PageID}`).html());
-        $('.SPA_TITLE_CONTAINER').html($(`template#${PageID}-title`).html());
-        // 封面
-        $('.Header').css({'opacity': '0.5'});
-        $('.Header').css('background-image', $(`template#${PageID}-titlebg`).html());
-        $('.Header').animate({'opacity': '1'});
 
         if(PageID === "inspirations") {
             // 不显示返回按钮

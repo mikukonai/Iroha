@@ -136,15 +136,7 @@ function LoadArticle(PageID, ArticleID) {
         // 标题
         document.getElementsByTagName("title")[0].innerHTML = `${mikumark.title} / Project Aurora`;
         $('#StickyTitle').html(mikumark.title);
-        $('#Title').html(mikumark.title);
-
-        // 封面
-        if(mikumark.cover.length > 0) {
-            $('.Header').css('background-image', `url('${mikumark.cover}')`);
-        }
-        else {
-            $('.Header').css('background-image', DEFAULT_COVER_CSS);
-        }
+        $('#MikumarkArticleTitle').html(mikumark.title);
 
         // 日期
         $('#MikumarkMetadataDate').html(mikumark.date.replace(/\-/,"年").replace(/\-/,"月") + '日');

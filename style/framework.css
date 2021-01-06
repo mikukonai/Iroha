@@ -13,7 +13,7 @@ body { font-family: Microsoft YaHei, "宋体", "Helvetica Neue", Helvetica, Aria
 /* 全局变量 */
 @media(min-width:651px){
     :root {
-        --HeaderHeight: 300px;
+        --HeaderHeight: 200px;
         --MainBorderRadius: 20px;
         --MainVerticalMargin: 40px;
         --MainMaxWidth_PC: 800px;
@@ -25,7 +25,7 @@ body { font-family: Microsoft YaHei, "宋体", "Helvetica Neue", Helvetica, Aria
 }
 @media(max-width:650px){
     :root {
-        --HeaderHeight: 260px;
+        --HeaderHeight: 150px;
         --MainBorderRadius: 0px;
         --MainVerticalMargin: 0px;
         --NavbarHeight: 40px;
@@ -45,7 +45,7 @@ body { font-family: Microsoft YaHei, "宋体", "Helvetica Neue", Helvetica, Aria
         max-width: var(--MainMaxWidth_PC);
         margin: var(--MainVerticalMargin) auto;
         border-radius: var(--MainBorderRadius);
-        box-shadow: 0 0px #e5e5e5, 0 0 15px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.05);
+        /* box-shadow: 0 0px #e5e5e5, 0 0 15px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.05); */
     }
 }
 @media(max-width:650px){
@@ -57,10 +57,10 @@ body { font-family: Microsoft YaHei, "宋体", "Helvetica Neue", Helvetica, Aria
 
 .Header {
     position: relative;
-    height: var(--HeaderHeight);
-    border-radius: var(--MainBorderRadius) var(--MainBorderRadius) 0 0;
+    text-align: center;
+    /* height: var(--HeaderHeight); */
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
     background-position: center center;
 }
 
@@ -68,27 +68,18 @@ body { font-family: Microsoft YaHei, "宋体", "Helvetica Neue", Helvetica, Aria
     position: sticky;
     top: 0;
     height: var(--NavbarHeight);
-    background: #fff;
+    /* background: #f7f8fa; */
+    /* border-radius: 100px; */
+
+    background: #ffffff;
     border-bottom: 0.5px solid #eee;
+
     text-align: center;
     z-index: 1001;
 }
 .Footer {
     padding: 20px 0;
-    background: linear-gradient(180deg, white, #fafafa);
-    border-radius: 0 0 var(--MainBorderRadius) var(--MainBorderRadius);
 }
-
-
-
-/* 首页各标题 */
-
-.HeaderTitleCenter { position: relative; padding-top: calc(var(--HeaderHeight) - 100px); line-height:34px; height: 34px; font-size: 25px; color: #ffffff; letter-spacing: 2px; text-shadow: 2px 2px 10px #000000; text-align: center; vertical-align: middle; font-weight: normal;}
-.HeaderSubtitleCenter { line-height:40px; height: 40px; padding-bottom: 20px; font-size: 13px; color:rgba(255,255,255,1); letter-spacing: 2px; }
-.HeaderTitleLeft { position: relative; line-height:34px; height: 34px; color: #ffffff; letter-spacing: 2px; text-shadow: 2px 2px 5px #000000; vertical-align: middle; font-weight: bold; text-align: left;}
-.HeaderTitleLeft:after { content:" / Project Aurora"; font-size: 19px; letter-spacing: 1px; color: rgba(255,255,255,0.9); text-shadow: 2px 2px 5px #000000; font-weight: 100;}
-@media(min-width:651px){.HeaderTitleLeft { padding-top: calc(var(--HeaderHeight) - 70px); font-size: 28px; padding-left: 45px;}}
-@media(max-width:650px){.HeaderTitleLeft { padding-top: calc(var(--HeaderHeight) - 60px); font-size: 25px; padding-left: 30px;}}
 
 
 /* 左右边栏 */
@@ -107,10 +98,10 @@ body { font-family: Microsoft YaHei, "宋体", "Helvetica Neue", Helvetica, Aria
 
 
 /* 导航按钮组件 */
-.NavbarItem { position: relative; height: var(--NavbarHeight); min-width: 60px; font-size: 14px; line-height: var(--NavbarHeight); padding: auto 15px; border: none; background-color: #ffffff; align-items: center;}
-.NavbarItem:hover { color: #00aaff; }
-.NavbarItem[active="true"] { color: #00aaff; }
-.NavbarItem[active="true"]:after { content: "."; display: block; position: absolute; left: 0; top: 0; width: 100%; color: rgba(0,0,0,0); box-shadow: inset 0 -3px #00aaff; animation: NavbarItemActiveAnimation 0.3s cubic-bezier(0.4, 0, 0.4, 1) 0s;}
+.NavbarItem { position: relative; height: var(--NavbarHeight); min-width: 60px; font-size: 14px; line-height: var(--NavbarHeight); padding: auto 15px; border: none; background-color: transparent; align-items: center;}
+.NavbarItem:hover { color: #1ea0f0; }
+.NavbarItem[active="true"] { color: #1ea0f0; }
+.NavbarItem[active="true"]:after { content: "."; display: block; position: absolute; left: 0; top: 0; width: 100%; color: rgba(0,0,0,0); box-shadow: inset 0 -3px #1ea0f0; animation: NavbarItemActiveAnimation 0.3s cubic-bezier(0.4, 0, 0.4, 1) 0s;}
 @keyframes NavbarItemActiveAnimation { 0% { opacity: 0; width: 0; } to { opacity: 1; width: 100%; }}
 .InMenu { display: none; top: var(--NavbarHeight); }
 
@@ -218,32 +209,89 @@ body { font-family: Microsoft YaHei, "宋体", "Helvetica Neue", Helvetica, Aria
 .ListSortingOptionSelected { background-color: #fff; box-shadow: 0 1px 2px 0 rgba(60,60,60,0.1), 0 1px 3px 1px rgba(60,60,60,0.1); }
 .ListEnding { text-align: center; font-size: 12px; color: #cccccc; margin: 20px auto 20px auto; }
 
+/***** 文章列表样式 *****/
+
+.ArticleItem {
+    margin: 15px 0;
+}
+.ArticleItem::after {
+    display: block;
+    content: "";
+    height: 1px;
+    background: linear-gradient(90deg, #fff, #eee, #fff);
+    margin-top: 15px;
+}
+.ArticleTitle {
+    margin-bottom: 3px;
+    text-align: center;
+}
+.ArticleTitleLink {
+    color: #333;
+    font-size: 16px;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+.ArticleTitleLink:hover {
+    color: #1ea0f0;
+    /* text-decoration: underline; */
+}
+.ArticleInfo {
+    color: #ccc;
+    font-size: 10px;
+    text-align: center;
+}
+.ArticleTag {
+    line-height: inherit;
+    background-color: #ffeaf0;
+    color: #ff88a9;
+    border: none;
+    border-radius: 10px;
+    padding: 1px 4px 1px 4px;
+    margin-left: 5px;
+}
+.ArticleCover {
+    display: block;
+    margin: 10px auto;
+    border-radius: 10px;
+    width: 250px;
+    filter: opacity(0.9);
+}
+
+/***** 日期方框样式 *****/
+
+.TimelineContainer { margin: 25px 0; text-align: center; overflow-x: auto; overflow-y: hidden; }
+.Timeline { margin: 0 auto; border-collapse: collapse; border-spacing: 0px; }
+.Timeline td { padding: 0; }
+.Day { box-sizing: border-box; margin: 3px 1.5px; width: 12px; height: 12px; background-color: #eee; border-radius: 2px; }
+
+.Blank, .Blank:hover { background-color: transparent; }
+.Firstday { background-color: #ddd; }
+
+.L1 { background-color: #c6e48b; cursor: pointer; }
+.L2 { background-color: #7bc96f; cursor: pointer; }
+.L3 { background-color: #239a3b; cursor: pointer; }
+.L4 { background-color: #196127; cursor: pointer; }
+.L1:hover { transform: scale(1.2); }
+.L2:hover { transform: scale(1.2); }
+.L3:hover { transform: scale(1.2); }
+.L4:hover { transform: scale(1.2); }
+
+.Weektag { margin: 2px 3px; height: 13px; font-size: 10px; text-align: right; color: #ccc; transform: scale(0.8); }
+.WeekCount { margin: 2px; width: 12px; line-height: 12px; font-size: 10px; text-align: center; color: #ddd; transform: scale(0.7); }
+
+
 /****************************************/
 /*  Mikumark 文 章 页 和 目 录 样 式 */
 /****************************************/
 
-/* 文章标题：内部容器 */
-.TitleContainer { position: absolute; border: none; width: 100%; height: var(--HeaderHeight); color: #ffffff; background: linear-gradient(to top, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0));}
-.Title { color: #ffffff; line-height: 30px; text-align: left; letter-spacing: 2px; text-shadow: 2px 2px 10px #000000; font-weight: bold;}
-@media(min-width:651px){
-    .Title { padding-top: calc(var(--HeaderHeight) - 70px); margin-left: 0; margin-right: 0; width: 100%; font-size: 30px;}
-    /* 标题：前部伪元素 */
-    .Title:before { content: ""; border-right: 20px solid rgba(255,255,255,0.4); margin-right: 25px;}
-    /* 标题：后部伪元素 */
-    .Title:after { content:" / Project Aurora"; font-size: 16px; color: rgba(255,255,255,0.8); text-shadow: none; font-weight: normal;}
-}
-@media(max-width:650px){
-    .Title { width: auto; padding-top: calc(var(--HeaderHeight) - 70px); text-align: center; font-size: 24px;}
-    .Title:before, .Title:after { display:none;}
-}
+/* 文章标题 */
+.MikumarkArticleTitle { color: #222; font-size: 24px; text-align: center; letter-spacing: 1px; font-weight: bold; margin: 50px 10px; }
 
 /* MD正文容器 */
 .MikumarkContainer { text-align:left; background-color:#ffffff; padding: 0 var(--MikumarkHorizontalPadding) var(--MikumarkBottomPadding) var(--MikumarkHorizontalPadding);}
 
 /* 元数据字段 */
-.MikumarkMetadata { font-size: 13px; color: #bbbbbb; }
-@media(min-width:651px){ .MikumarkMetadata { text-align: left; padding: 30px 0 30px var(--MikumarkHorizontalPadding); } }
-@media(max-width:650px){ .MikumarkMetadata { text-align: center; padding:20px var(--MikumarkHorizontalPadding); } }
+.MikumarkMetadata { text-align: center; font-size: 13px; color: #bbbbbb; margin: 30px 0; }
 
 /* 仅移动端：顶部标题栏 */
 @media(max-width:650px){
@@ -287,7 +335,7 @@ body { font-family: Microsoft YaHei, "宋体", "Helvetica Neue", Helvetica, Aria
 }
 
 /* 菜单内部的导航栏 */
-.StickyNavbar { position: sticky; position: -webkit-sticky; height: 80px; top: 0; margin: 0 0 0 0; text-align: center; vertical-align: -webkit-baseline-middle; color: #566666; background-color: #ffffff; font-size: 14px; border-bottom: 0.5px solid #eee; z-index: 1001; }
+.StickyNavbar { position: sticky; position: -webkit-sticky; height: 80px; top: 0; margin: 0 0 0 0; text-align: center; vertical-align: -webkit-baseline-middle; color: #566666; background-color: #ffffff; font-size: 14px; z-index: 1001; }
 @media(max-width:650px){
     .StickyNavbar { background: none; }
 }

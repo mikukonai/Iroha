@@ -44,7 +44,7 @@
         <div class="StickyNavbar">
             <button id="MenuButton" class="MenuButton" data-state="off">menu</button>
             <nav class="Navbar" id="MenuNavbar" style="top: 40px; z-index: 100000; border: none;">
-                <button class="NavbarItem SPA_TRIGGER" active="false" data-target="index">首 页</button><button class="NavbarItem SPA_TRIGGER" active="false" data-target="inspirations">灵 感</button><button class="NavbarItem SPA_TRIGGER" active="false" data-target="blog">博 客</button><button class="NavbarItem SPA_TRIGGER" active="false" data-target="about">关 于</button>
+                <button class="NavbarItem SPA_TRIGGER" active="false" data-target="index">首 页</button><button class="NavbarItem SPA_TRIGGER" active="false" data-target="inspirations">灵 感</button><button class="NavbarItem SPA_TRIGGER" active="false" data-target="blog">博 客</button><button class="NavbarItem SPA_TRIGGER" active="false" data-target="gallery">分 享</button><button class="NavbarItem SPA_TRIGGER" active="false" data-target="about">关 于</button>
             </nav>
         </div>
         <!--菜单主题内容，一般是目录。由SPA_Render插入相应的锚点。-->
@@ -59,7 +59,23 @@
 <!--页面框架-->
 <div class="Main">
     <!--标题和封面-->
-    <header class="Header SPA_TITLE_CONTAINER"></header>
+    <header class="Header">
+        <style>
+        @media(min-width:651px){
+            .HeaderLogo {
+                width: 60%;
+                margin: 0 auto 10px auto;
+            }
+        }
+        @media(max-width:650px){
+            .HeaderLogo {
+                width: 80%;
+                margin: 30px auto 10px auto;
+            }
+        }
+        </style>
+        <img src="./image/callsign.png" class="HeaderLogo">
+    </header>
     <!--导航栏-->
     <nav class="Navbar" id="MainNavbar">
         <button class="NavbarItem SPA_TRIGGER" active="false" data-target="index">首 页</button><button class="NavbarItem SPA_TRIGGER" active="false" data-target="inspirations">灵 感</button><button class="NavbarItem SPA_TRIGGER" active="false" data-target="blog">博 客</button><button class="NavbarItem SPA_TRIGGER" active="false" data-target="about">关 于</button>
@@ -69,7 +85,7 @@
     <!--底部-->
     <footer class="Footer">
         <div style="font-size: 13px; text-align: center; line-height: 25px; color: #ccc;" class="RBGradient">★ Framework IROHA ★</div>
-        <div style="font-size: 12px; text-align: center; line-height: 25px; color: #ccc;">© 2016-<span class="CopyrightYear"></span> Mikukonai</div>
+        <div style="font-size: 12px; text-align: center; line-height: 25px; color: #ccc;">版权所有 © 2016-<span class="CopyrightYear"></span> Mikukonai</div>
     </footer>
 </div>
 
@@ -113,97 +129,12 @@
 
 <!--文章列表模板-->
 <template id="blog">
-
-<style>
-.TimelineContainer { margin: 25px 0; text-align: center; overflow-x: auto; overflow-y: hidden; }
-.Timeline { margin: 0 auto; border-collapse: collapse; border-spacing: 0px; }
-.Timeline td { padding: 0; }
-.Day { box-sizing: border-box; margin: 3px 1.5px; width: 12px; height: 12px; background-color: #eee; border-radius: 2px; }
-
-.Blank, .Blank:hover { background-color: transparent; }
-.Firstday { background-color: #ddd; }
-
-.L1 { background-color: #c6e48b; cursor: pointer; }
-.L2 { background-color: #7bc96f; cursor: pointer; }
-.L3 { background-color: #239a3b; cursor: pointer; }
-.L4 { background-color: #196127; cursor: pointer; }
-.L1:hover { transform: scale(1.2); }
-.L2:hover { transform: scale(1.2); }
-.L3:hover { transform: scale(1.2); }
-.L4:hover { transform: scale(1.2); }
-
-.Weektag { margin: 2px 3px; height: 13px; font-size: 10px; text-align: right; color: #ccc; transform: scale(0.8); }
-.WeekCount { margin: 2px; width: 12px; line-height: 12px; font-size: 10px; text-align: center; color: #ddd; transform: scale(0.7); }
-
-.CategoryIcon {
-    font-family: 'consolas', monospace;
-    display:inline-block;
-    width:30px; height:30px;
-    line-height: 30px;
-    background-color:#ccc;
-    color:#fff;
-    text-align:center;
-    font-size:18px;
-    font-weight:bold;
-    margin: 0px 1px;
-    border-radius: 3px;
-}
-</style>
-
     <div class="TimelineContainer">
         <table class="Timeline">
             <tr id="WeekCountContainer"></tr>
             <tr id="DaysContainer"></tr>
         </table>
     </div>
-
-<style>
-.ArticleItem {
-    margin: 15px 0;
-}
-.ArticleItem::after {
-    display: block;
-    content: "";
-    height: 1px;
-    background: linear-gradient(90deg, #fff, #eee, #fff);
-    margin-top: 15px;
-}
-.ArticleTitle {
-    margin-bottom: 3px;
-    text-align: center;
-}
-.ArticleTitleLink {
-    color: #333;
-    font-size: 16px;
-    letter-spacing: 1px;
-    cursor: pointer;
-}
-.ArticleTitleLink:hover {
-    color: #1ea0f0;
-    /* text-decoration: underline; */
-}
-.ArticleInfo {
-    color: #ccc;
-    font-size: 10px;
-    text-align: center;
-}
-.ArticleTag {
-    line-height: inherit;
-    background-color: #ffeaf0;
-    color: #ff88a9;
-    border: none;
-    border-radius: 10px;
-    padding: 1px 4px 1px 4px;
-    margin-left: 5px;
-}
-.ArticleCover {
-    display: block;
-    margin: 10px auto;
-    border-radius: 10px;
-    width: 250px;
-    filter: opacity(0.9);
-}
-</style>
 
     <div class="SectionHeader">博客文章<div class="SectionHeaderComment">Articles</div></div>
 
@@ -212,8 +143,6 @@
     </div>
 
     <div class="SectionBody" id="ListContainer"></div>
-
-    <div class="ListEnding">封面出处：《凉宫春日的忧郁》</div>
 
 </template>
 
@@ -246,6 +175,7 @@
 
 <!--文章正文框架模板-->
 <template id="blog-article">
+    <div id="MikumarkArticleTitle" class="MikumarkArticleTitle"></div>
     <div class="MikumarkMetadata">
         <span id="MikumarkMetadataDate" style="padding-right:8px;"><span class="SkeletonPlaceholder" style="width:70px;">0</span></span>·<span id="MikumarkMetadataAuthors" style="padding-left:8px;"><span class="SkeletonPlaceholder" style="width:70px;">0</span></span>
     </div>
@@ -255,23 +185,6 @@
         <span class="SkeletonPlaceholder" style="width:70%;">占位骨架</span><br>
     </div>
 </template>
-
-
-
-<!--封面参数-->
-
-<template id="index-titlebg">        linear-gradient(0deg, #fff, #e1f5ff) </template>
-<template id="inspirations-titlebg"> linear-gradient(0deg, #fff, #e1f5ff) </template>
-<template id="blog-titlebg">         linear-gradient(0deg, #fff, #e1f5ff) </template>
-<template id="about-titlebg">        linear-gradient(0deg, #fff, #e1f5ff) </template>
-
-<!--Header模板-->
-
-<template id="index-title">        <div class="HeaderTitleCenter"><b>Framework IROHA</b><div class="HeaderSubtitleCenter">无后端博客框架</div></div> </template>
-<template id="inspirations-title"> <div class="HeaderTitleCenter"><b>Framework IROHA</b><div class="HeaderSubtitleCenter">无后端博客框架</div></div> </template>
-<template id="blog-title">         <div class="HeaderTitleCenter"><b>Framework IROHA</b><div class="HeaderSubtitleCenter">无后端博客框架</div></div> </template>
-<template id="about-title">        <div class="HeaderTitleCenter"><b>Framework IROHA</b><div class="HeaderSubtitleCenter">无后端博客框架</div></div> </template>
-<!-- <template id="about-title"><div class="HeaderTitleLeft">关于</div></template> -->
 
 <!--文章正文Header-->
 <template id="blog-article-title"><div class="TitleContainer"><div class="Title" id="Title" style="opacity: 1;">请稍等...</div></div></template>
