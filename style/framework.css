@@ -139,9 +139,9 @@ body { font-family: Microsoft YaHei, "宋体", "Helvetica Neue", Helvetica, Aria
 
 .IndexItemContainer { margin: 5px 0 5px 0; text-align: center; border: none; line-height: 35px; font-size: 15px; color: #555555; }
 .IndexItemContainer:after { content:''; display: block; height: 1px; margin-top: 5px; border: none; background: linear-gradient(90deg, #e8e8e8, #fff); }
-@media(min-width:651px) { /* Desktop */.IndexItemContainer:after { margin-left: 50px; }}
+@media(min-width:651px) { /* Desktop */.IndexItemContainer:after { margin-left: 10%; }}
 @media(max-width:650px) { /* Mobile */.IndexItemContainer:after { margin-left: 25px; }}
-@media(min-width:651px) { /* Desktop */.IndexItemPaddingBox { margin: 0; padding: 8px 50px 8px 50px; background: transparent; }}
+@media(min-width:651px) { /* Desktop */.IndexItemPaddingBox { margin: 0; padding: 8px 10% 8px 10%; background: transparent; }}
 @media(max-width:650px) { /* Mobile */.IndexItemPaddingBox { margin: 0; padding:8px 25px 8px 25px; background: transparent; }}
 .IndexItemTitle { font-size: 17px; line-height: 30px; text-align: left; font-weight: bold; color: #566666; vertical-align: middle; text-shadow: none; }
 @media(min-width:651px) { /* Desktop */ .IndexItemTitle::before { content:attr(data-prefix); line-height: inherit; margin-right: 10px; padding-right: 10px; font-size: smaller; border-right: 5px solid rgba(0,0,0,0.1); color: #1ea0f0; font-weight: bold; }}
